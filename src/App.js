@@ -11,11 +11,13 @@ function App() {
     return (
         <Provider store = {store}>
             <BrowserRouter>
+
                 <Route 
                     exact 
                     path = '/'
                     render = {() => <HomeScreen /> }
                 />
+                
             </BrowserRouter>
         </Provider>
     );
