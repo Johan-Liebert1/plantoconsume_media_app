@@ -30,9 +30,6 @@ const AnimeMangaComponent = ( { arr, what } ) => {
 
     genreString += genres[genres.length - 1]
 
-    const wholeTitle = `${title} ( ${type} )`
-
-
     return (
         <div id = 'list-item'>
             <div id = 'image'>

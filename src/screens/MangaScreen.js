@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMangaDetails } from '../actions/animeMangaActions'
 
@@ -6,6 +6,7 @@ import AnimeMangaComponent from '../components/AnimeMangaComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
 
 const MangaScreen = () => {
+    const [mangaId, setMangaId] = useState('')
 
     const dispatch = useDispatch()
 
@@ -21,10 +22,32 @@ const MangaScreen = () => {
 
     }, [])
 
+    const addManga = (e) => {
+        e.preventDefault()
+        dispatch(getMangaDetails(mangaId))
+    }
+
     return (
-        <div style = {{ "width": "70%", "margin": "0 auto" }} >
+        <div style = {{ "width": "70%", "margin": "20px auto" }} >
             <PageLinksComponent />
             <h1 style = {{ textAlign: 'center' }} >Plan to Read Manga</h1>
+
+            <hr style = {{ color: 'white' }}></hr>
+
+            <form onSubmit = {addManga} >
+                <h6>Add a New Entry</h6>
+                <div className='form-group'>
+                    <input 
+                        type='text'
+                        value = {mangaId}
+                        placeholder = 'Enter Manga Id'
+                        onChange = { (e) => setMangaId(e.target.value) }
+                    />
+                </div>
+                <div className = 'form-group'>
+                    <button type = 'submit' className = 'btn-sm btn-primary'>Add</button>
+                </div>
+            </form>
 
             {
                 manga.map((man, index) => {

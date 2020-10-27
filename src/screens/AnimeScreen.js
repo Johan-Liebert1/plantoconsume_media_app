@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAnimeDetails } from '../actions/animeMangaActions'
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
@@ -10,22 +10,43 @@ const AnimeScreen = () => {
 
     const { anime } = useSelector(state => state.anime)
 
+    const [animeId, setAnimeId] = useState('')
+
     useEffect(() => {
 
         // this is how the action creator is mapped to the reducers
         // dispatch( getAnimeDetails(19) )
         // dispatch( getAnimeDetails(457) )
         // dispatch( getAnimeDetails(820) )
-        dispatch( getAnimeDetails(39547) )
+        // dispatch( getAnimeDetails(39547) )
 
     }, [])
 
-    console.log('anime: ', anime)
+    const addAnime = (e) => {
+        e.preventDefault()
+        dispatch( getAnimeDetails(animeId) )
+    }
 
     return (
-        <div style = {{ "width": "70%", "margin": "0 auto" }} >
+        <div style = {{ "width": "70%", "margin": "20px auto" }} >
             <PageLinksComponent />
             <h1 style = {{ textAlign: 'center' }} >Plan to Watch Anime</h1>
+            <hr style = {{ color: 'white' }}></hr>
+
+            <form onSubmit = {addAnime} >
+                <h6>Add a New Entry</h6>
+                <div className='form-group'>
+                    <input 
+                        type='text'
+                        value = {animeId}
+                        placeholder = 'Enter Anime Id'
+                        onChange = { (e) => setAnimeId(e.target.value) }
+                    />
+                </div>
+                <div className = 'form-group'>
+                    <button type = 'submit' className = 'btn-sm btn-primary'>Add</button>
+                </div>
+            </form>
 
             {
                 anime.map((an, index) => {

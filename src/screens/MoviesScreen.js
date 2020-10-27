@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovieDetails } from '../actions/moviesActions'
@@ -6,6 +6,7 @@ import MovieComponent from '../components/MovieComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
 
 const MoviesScreen = () => {
+    const [movieId, setMovieId] = useState('')
 
     const dispatch = useDispatch()
 
@@ -13,15 +14,36 @@ const MoviesScreen = () => {
 
     useEffect(() => {
 
-        dispatch( getMovieDetails('tt0120737') )
+        // dispatch( getMovieDetails('tt0120737') )
 
     }, [])
 
+    const addMovie = (e) => {
+        e.preventDefault()
+        dispatch(getMovieDetails(movieId))
+    }
+
     return (
-        <div style = {{ "width": "70%", "margin": "0 auto" }}>
+        <div style = {{ "width": "70%", "margin": "20px auto" }}>
             <PageLinksComponent />
             <h1 style = {{ textAlign: 'center' }} >Plan to Watch Movies</h1>
+            <hr style = {{ color: 'white' }}></hr>
             
+            <form onSubmit = {addMovie} >
+                <h6>Add a New Entry</h6>
+                <div className='form-group'>
+                    <input 
+                        type='text'
+                        value = {movieId}
+                        placeholder = 'Enter Movie Id'
+                        onChange = { (e) => setMovieId(e.target.value) }
+                    />
+                </div>
+                <div className = 'form-group'>
+                    <button type = 'submit' className = 'btn-sm btn-primary'>Add</button>
+                </div>
+            </form>
+
             {
                 movies.movies.map((movie, index) => {
 
