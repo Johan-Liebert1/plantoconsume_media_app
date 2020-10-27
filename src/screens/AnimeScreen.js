@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAnimeDetails } from '../actions/animeMangaActions'
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
@@ -11,10 +11,6 @@ const AnimeScreen = () => {
     const { anime } = useSelector(state => state.anime)
 
     const [animeId, setAnimeId] = useState('')
-
-    useEffect(() => {
-        
-    }, [])
 
     const addAnime = (e) => {
         e.preventDefault()
@@ -45,7 +41,6 @@ const AnimeScreen = () => {
 
                 </div>
             </form>
-
             {
                 anime.map((an, index) => {
 
@@ -66,12 +61,16 @@ const AnimeScreen = () => {
                     }
 
                     return <AnimeMangaComponent 
-                                key = {index} 
-                                arr = { arr }
-                                what = 'anime'
-                            />
+                        key = { index } 
+                        arr = { arr }
+                        what = 'anime'
+                        />
                 })
+                
             }
+
+
+
 
         <footer 
             style = {{ width: '100%', height: '100px', textAlign: 'center', marginTop: "75px" }}
