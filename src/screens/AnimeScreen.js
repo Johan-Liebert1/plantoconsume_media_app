@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAnimeDetails } from '../actions/animeMangaActions'
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
+import PageLinksComponent from '../components/PageLinksComponent'
 
 const AnimeScreen = () => {
 
@@ -15,6 +16,7 @@ const AnimeScreen = () => {
         // dispatch( getAnimeDetails(19) )
         // dispatch( getAnimeDetails(457) )
         // dispatch( getAnimeDetails(820) )
+        dispatch( getAnimeDetails(39547) )
 
     }, [])
 
@@ -22,6 +24,7 @@ const AnimeScreen = () => {
 
     return (
         <div style = {{ "width": "70%", "margin": "0 auto" }} >
+            <PageLinksComponent />
             <h1 style = {{ textAlign: 'center' }} >Plan to Watch Anime</h1>
 
             {
@@ -38,7 +41,8 @@ const AnimeScreen = () => {
                         type: an.type,
                         href: an.url,
                         score: an.score,
-                        rating: an.rating
+                        rating: an.rating,
+                        source: an.source
                     }
 
                     return <AnimeMangaComponent 

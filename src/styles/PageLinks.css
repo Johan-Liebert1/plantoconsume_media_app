@@ -1,0 +1,22 @@
+#label-container {
+    position: fixed;
+    left: 0;
+    top: 50%;
+}
+
+.label {
+    margin-top: 10px;
+    transform: translate(-90%, 0%);
+    transition: all ease-out 0.25s;
+    background-color:#0984e3;
+    height: 40px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.label:hover {
+    transform: translate(0%, 0%);
+    transition: all ease-in 0.25s;
+}

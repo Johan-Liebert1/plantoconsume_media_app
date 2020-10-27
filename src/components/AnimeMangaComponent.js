@@ -16,7 +16,8 @@ const AnimeMangaComponent = ( { arr, what } ) => {
         title, 
         type, 
         href,
-        rating, 
+        rating,
+        source, 
         score } = arr
     
     const isAiring = airing ? 'True' : 'False'
@@ -29,6 +30,9 @@ const AnimeMangaComponent = ( { arr, what } ) => {
 
     genreString += genres[genres.length - 1]
 
+    const wholeTitle = `${title} ( ${type} )`
+
+
     return (
         <div id = 'list-item'>
             <div id = 'image'>
@@ -36,10 +40,13 @@ const AnimeMangaComponent = ( { arr, what } ) => {
             </div>
 
             <div id = 'info' >
-                <div id = 'title'>
+                <div id = 'title' style ={{display: 'flex'}}>
                     <a href = {href} target='_blank'> 
-                        <h2 style = {{ display : 'inline' }}>{ title }</h2>
-                        { what === 'anime' && <h2 style = {{display : 'inline'}}> ( {type} )</h2> } 
+                        <h5 style = {{ display : 'inline' }}>
+                            { title }
+                        </h5>
+                        { what === 'anime' && <h5 style = {{display : 'inline'}}> ( {type} )</h5> }
+                        
                     </a>
                 </div>
 
@@ -74,6 +81,7 @@ const AnimeMangaComponent = ( { arr, what } ) => {
                             <div className='value'>{ airDate }</div>
                         </div>
 
+                        {what === 'anime' &&
                         <div>
                             <div className='attr'>
                                 <strong>
@@ -82,18 +90,20 @@ const AnimeMangaComponent = ( { arr, what } ) => {
                             </div>
                             <div className='value'>{ rating }</div>
                         </div>
+                        }
                         
                     </div> 
 
                     <div className='section2'>
-                        <div>
-                            <div className='attr'><strong>Genre: </strong></div>
-                            <div className='value'>{ genreString }</div>
-                        </div>
-
+                        
                         <div>
                             <div className='attr'><strong>MAL Score: </strong></div>
                             <div className='value'>{ score }</div>
+                        </div>
+
+                        <div>
+                            <div className='attr'><strong>Genre: </strong></div>
+                            <div className='value'>{ genreString }</div>
                         </div>
 
                         <div>
@@ -104,6 +114,13 @@ const AnimeMangaComponent = ( { arr, what } ) => {
                             </div>
                             <div className='value'>{ duration }</div>
                         </div>
+
+                        { what === 'anime' && 
+                        <div>
+                            <div className='attr'><strong>Source: </strong></div>
+                            <div className='value'>{ source }</div>
+                        </div>
+                        }
 
                     </div>
 

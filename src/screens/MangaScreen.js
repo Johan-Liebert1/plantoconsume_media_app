@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getMangaDetails } from '../actions/animeMangaActions'
 
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
+import PageLinksComponent from '../components/PageLinksComponent'
 
 const MangaScreen = () => {
 
@@ -14,13 +15,15 @@ const MangaScreen = () => {
 
         // this is how the action creator is mapped to the reducers
         
-        dispatch(getMangaDetails(1))
+        // dispatch(getMangaDetails(1))
+        // dispatch(getMangaDetails(2))
 
 
     }, [])
 
     return (
         <div style = {{ "width": "70%", "margin": "0 auto" }} >
+            <PageLinksComponent />
             <h1 style = {{ textAlign: 'center' }} >Plan to Read Manga</h1>
 
             {
@@ -28,8 +31,9 @@ const MangaScreen = () => {
 
                     let arr = {
                         airing: man.publishing,
-                        duration: man.volumes, // no duration for mangas so duration = volumes
-                        episodes: man.chapters,
+                        duration: man.volumes === null ? '-' : man.volumes, 
+                        // no duration for mangas so duration = volumes
+                        episodes: man.chapters === null ? '-' : man.chapters,
                         genres: man.genres.map(g => g.name),
                         airDate: man['published'].string,
                         image: man.image_url,
