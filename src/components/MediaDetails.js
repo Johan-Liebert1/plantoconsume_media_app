@@ -38,8 +38,8 @@ const MediaDetails = ( { arr, what } ) => {
             <div id = 'info' >
                 <div id = 'title'>
                     <a href = {href} target='_blank'> 
-                        <h2>{ title }</h2>
-                        { what === 'anime' && <h2 style = {{display : 'inline'}}>({type})</h2> } 
+                        <h2 style = {{ display : 'inline' }}>{ title }</h2>
+                        { what === 'anime' && <h2 style = {{display : 'inline'}}> ( {type} )</h2> } 
                     </a>
                 </div>
 
