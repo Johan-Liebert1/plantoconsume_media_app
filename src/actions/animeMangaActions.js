@@ -1,7 +1,7 @@
 import axios from 'axios' 
 
 export const getAnimeDetails = (animeId) => async (dispatch) => {
-
+    // the => (dispatch) => {...} is necessary
     try {
 
         dispatch({ type: 'ANIME_DETAILS_REQUEST' })
@@ -50,9 +50,17 @@ export const getMangaDetails = (mangaId) => async (dispatch) => {
 }
 
 export const deleteAnimeDetails = (animeId) => (dispatch) => {
-    console.log('delteanimeaction, animeId = ', animeId)
     dispatch({
         type: 'ANIME_DETAILS_DELETE',
         payload: animeId
+    })
+}
+
+
+export const deleteMangaDetails = (mangaId) => (dispatch) => {
+    
+    dispatch({
+        type: 'MANGA_DETAILS_DELETE',
+        payload: mangaId
     })
 }

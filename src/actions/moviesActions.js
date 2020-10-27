@@ -1,14 +1,12 @@
 import axios from 'axios'
 
-export const getMovieDetails = (imdbId) => async (dispatch) => {
+export const getMovieDetails = (apiKey, imdbId) => async (dispatch) => {
     try {
         dispatch({ type: 'MOVIE_DETAILS_REQUEST' })
 
-        const key = process.env.REACT_APP_OPENDB_API_KEY
+        apiKey = apiKey === '' ? process.env.REACT_APP_OPENDB_API_KEY : apiKey 
 
-        console.log('apikey: ', key)
-
-        const { data } = await axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${imdbId}`)
+        const { data } = await axios.get(`http://www.omdbapi.com/?apikey=${apiKey}&i=${imdbId}`)
 
         dispatch({
             type: "MOVIE_DETAILS_SUCCESS",
@@ -25,4 +23,12 @@ export const getMovieDetails = (imdbId) => async (dispatch) => {
         })
 
     }
+}
+
+
+export const deleteMovieDetails = (movieId) => (dispatch) => {
+    dispatch({
+        type: 'MOVIE_DETAILS_DELETE',
+        payload: movieId
+    })
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { deleteAnimeDetails } from '../actions/animeMangaActions'
+import { deleteAnimeDetails, deleteMangaDetails } from '../actions/animeMangaActions'
 
 import {useDispatch} from 'react-redux'
 
@@ -38,10 +38,13 @@ const AnimeMangaComponent = ( { arr, what } ) => {
 
     const deleteHandler = () => {
         // dispatch delete action depending upon 'what' prop
+
         if ( what === 'anime' ) {
-            console.log('what = ', what)
-            console.log('mal_id = ', mal_id)
             dispatch(deleteAnimeDetails(mal_id))
+        }
+
+        else {
+            dispatch(deleteMangaDetails(mal_id))
         }
     }
 

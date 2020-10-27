@@ -1,4 +1,6 @@
 import React from 'react'
+import {useDispatch} from 'react-redux'
+import { deleteMovieDetails } from '../actions/moviesActions'
 
 import '../styles/MediaDetails.css'
 
@@ -14,10 +16,25 @@ const MovieComponent = ( { arr } ) => {
         href, 
         score,
         country,
-        metascore } = arr
+        metascore,
+        movieId } = arr
+
+    const dispatch = useDispatch()
+    
+    const deleteHandler = (e) => {
+        e.preventDefault()
+        dispatch( deleteMovieDetails(movieId) )
+    } 
 
     return (
         <div id = 'list-item'>
+
+            <button 
+                id = "delete-btn" 
+                className='btn btn-outline-danger btn-sm'
+                onClick = { deleteHandler }
+            >Delete</button>
+
             <div id = 'image'>
                 <img src = { image } alt = { `${title}-image` } />
             </div>
@@ -26,7 +43,6 @@ const MovieComponent = ( { arr } ) => {
                 <div id = 'title'>
                     <a href = {href} target='_blank'> 
                         <h2 style = {{ display : 'inline' }}>{ title }</h2>
-                        {/* { <h2 style = {{display : 'inline'}}> ( {type} )</h2> }  */}
                     </a>
                 </div>
 

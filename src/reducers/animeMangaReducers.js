@@ -19,7 +19,7 @@ export const animeReducer = (state = { anime: [] }, action) => {
 
         case 'ANIME_DETAILS_DELETE':
             console.log('anime_details_delete')
-            
+
             let anime = state.anime.filter(an => an.mal_id !== action.payload)
 
             window.localStorage.setItem(
@@ -52,6 +52,16 @@ export const mangaReducer = (state = { manga: [] }, action) => {
 
         case 'MANGA_DETAILS_FAIL':
             return { loading: false, ...state }
+
+        case 'MANGA_DETAILS_DELETE':
+            let manga = state.manga.filter(man => man.mal_id !== action.payload)
+
+            window.localStorage.setItem(
+                'manga',
+                JSON.stringify(manga)
+            )
+
+            return { loading: false, manga }
 
         default:
             return state

@@ -13,6 +13,16 @@ export const moviesReducer = (state = { movies: [] }, action) => {
         case 'MOVIE_DETAILS_FAIL':
             return { loading: false, ...state }
 
+        case 'MOVIE_DETAILS_DELETE':
+            let movies = state.movies.filter(m => m.imdbID !== action.payload)
+
+            window.localStorage.setItem(
+                'movies',
+                JSON.stringify(movies)
+            )
+
+            return { loading: false, movies }
+
         default:
             return state
     }

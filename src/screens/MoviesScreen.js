@@ -7,6 +7,7 @@ import PageLinksComponent from '../components/PageLinksComponent'
 
 const MoviesScreen = () => {
     const [movieId, setMovieId] = useState('')
+    const [apiKey, setApiKey] = useState('')
 
     const dispatch = useDispatch()
 
@@ -20,7 +21,7 @@ const MoviesScreen = () => {
 
     const addMovie = (e) => {
         e.preventDefault()
-        dispatch(getMovieDetails(movieId))
+        dispatch(getMovieDetails(apiKey, movieId))
     }
 
     return (
@@ -32,6 +33,15 @@ const MoviesScreen = () => {
             <form onSubmit = {addMovie} >
                 <h6 className='row'>Add a New Entry</h6>
                 <div className='form-group row'>
+                    <input 
+                        type='text'
+                        value = {apiKey}
+                        placeholder = 'Enter Your API Key'
+                        onChange = { (e) => setApiKey(e.target.value) }
+                        className='form-control col-md-3'
+                        style = {{backgroundColor: 'rgb(14, 22, 29)', color: 'white'}}
+                    />
+                    <div className='col-md-1'></div>
                     <input 
                         type='text'
                         value = {movieId}
@@ -60,7 +70,8 @@ const MoviesScreen = () => {
                         href: `https://www.imdb.com/title/${movie.imdbID}`,
                         score: movie.imdbRating,
                         country: movie.Country,
-                        metascore: movie.Metascore
+                        metascore: movie.Metascore,
+                        movieId: movie.imdbID
                     }
 
                     return <MovieComponent 
