@@ -4,6 +4,10 @@ export const moviesReducer = (state = { movies: [] }, action) => {
             return { loading: true, ...state }
     
         case 'MOVIE_DETAILS_SUCCESS':
+            window.localStorage.setItem(
+                'movies', 
+                JSON.stringify([...state.movies, action.payload])
+            )
             return { loading: false, movies : [...state.movies, action.payload]}
 
         case 'MOVIE_DETAILS_FAIL':

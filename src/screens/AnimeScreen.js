@@ -33,18 +33,22 @@ const AnimeScreen = () => {
             <h1 style = {{ textAlign: 'center' }} >Plan to Watch Anime</h1>
             <hr style = {{ color: 'white' }}></hr>
 
-            <form onSubmit = {addAnime} >
-                <h6>Add a New Entry</h6>
-                <div className='form-group'>
+            <form onSubmit = { addAnime }>
+                <h6 className = 'row'>Add a New Entry</h6>
+                <div className='form-group row'>
                     <input 
                         type='text'
+                        className='form-control col-md-3'
                         value = {animeId}
                         placeholder = 'Enter Anime Id'
                         onChange = { (e) => setAnimeId(e.target.value) }
+                        style = {{backgroundColor: 'rgb(14, 22, 29)', color: 'white'}}
                     />
-                </div>
-                <div className = 'form-group'>
-                    <button type = 'submit' className = 'btn-sm btn-primary'>Add</button>
+                    <button 
+                        type = 'submit' 
+                        className = 'btn btn-outline-primary col-md-1 ml-5'
+                    >Add</button>
+
                 </div>
             </form>
 

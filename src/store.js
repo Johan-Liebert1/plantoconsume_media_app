@@ -11,7 +11,28 @@ const reducers = combineReducers({
     movies: moviesReducer
 })
 
-const initialState = {}
+const animeFromLocalStorage = window.localStorage.getItem('anime') ? 
+    JSON.parse(window.localStorage.getItem('anime')) : []
+
+const mangaFromLocalStorage = window.localStorage.getItem('manga') ? 
+    JSON.parse(window.localStorage.getItem('manga')) : []
+
+const moviesFromLocalStorage = window.localStorage.getItem('movies') ? 
+    JSON.parse(window.localStorage.getItem('movies')) : []
+
+const initialState = {
+    anime: {
+        anime: animeFromLocalStorage
+    },
+
+    manga : {
+        manga: mangaFromLocalStorage
+    },
+
+    movies: {
+        movies: moviesFromLocalStorage
+    }
+}
 
 const store = createStore(
     reducers,

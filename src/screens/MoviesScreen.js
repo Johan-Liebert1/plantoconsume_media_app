@@ -30,17 +30,20 @@ const MoviesScreen = () => {
             <hr style = {{ color: 'white' }}></hr>
             
             <form onSubmit = {addMovie} >
-                <h6>Add a New Entry</h6>
-                <div className='form-group'>
+                <h6 className='row'>Add a New Entry</h6>
+                <div className='form-group row'>
                     <input 
                         type='text'
                         value = {movieId}
                         placeholder = 'Enter Movie Id'
                         onChange = { (e) => setMovieId(e.target.value) }
+                        className='form-control col-md-3'
+                        style = {{backgroundColor: 'rgb(14, 22, 29)', color: 'white'}}
                     />
-                </div>
-                <div className = 'form-group'>
-                    <button type = 'submit' className = 'btn-sm btn-primary'>Add</button>
+                    <button 
+                        type = 'submit' 
+                        className = 'btn btn-outline-primary col-md-1 ml-5'
+                    > Add</button>
                 </div>
             </form>
 
