@@ -21,6 +21,7 @@ a:hover {
     display: flex;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    position: relative;
 }
 
 #info {
@@ -92,4 +93,10 @@ img {
     color: white;
     height: 15%;
     margin-bottom: 5px;
+}
+
+#delete-btn {
+    position: absolute;
+    top: 5%;
+    right: 2%;
 }

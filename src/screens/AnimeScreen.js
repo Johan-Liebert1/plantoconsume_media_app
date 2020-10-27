@@ -13,13 +13,7 @@ const AnimeScreen = () => {
     const [animeId, setAnimeId] = useState('')
 
     useEffect(() => {
-
-        // this is how the action creator is mapped to the reducers
-        // dispatch( getAnimeDetails(19) )
-        // dispatch( getAnimeDetails(457) )
-        // dispatch( getAnimeDetails(820) )
-        // dispatch( getAnimeDetails(39547) )
-
+        
     }, [])
 
     const addAnime = (e) => {
@@ -67,7 +61,8 @@ const AnimeScreen = () => {
                         href: an.url,
                         score: an.score,
                         rating: an.rating,
-                        source: an.source
+                        source: an.source,
+                        mal_id: an.mal_id
                     }
 
                     return <AnimeMangaComponent 

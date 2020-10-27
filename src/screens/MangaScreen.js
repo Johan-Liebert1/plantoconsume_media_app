@@ -67,7 +67,8 @@ const MangaScreen = () => {
                         // type: man.type, no type for manga
                         href: man.url,
                         score: man.score,
-                        rating: man.rating
+                        rating: man.rating,
+                        mal_id: man.mal_id
                     }
 
                     return <AnimeMangaComponent 

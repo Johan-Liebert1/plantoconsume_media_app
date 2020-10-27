@@ -1,4 +1,7 @@
 import React from 'react'
+import { deleteAnimeDetails } from '../actions/animeMangaActions'
+
+import {useDispatch} from 'react-redux'
 
 import '../styles/MediaDetails.css'
 // { airing, duration, episodes, genres, airDate, image, title }
@@ -18,7 +21,8 @@ const AnimeMangaComponent = ( { arr, what } ) => {
         href,
         rating,
         source, 
-        score } = arr
+        score,
+        mal_id } = arr
     
     const isAiring = airing ? 'True' : 'False'
 
@@ -30,10 +34,28 @@ const AnimeMangaComponent = ( { arr, what } ) => {
 
     genreString += genres[genres.length - 1]
 
+    const dispatch = useDispatch()
+
+    const deleteHandler = () => {
+        // dispatch delete action depending upon 'what' prop
+        if ( what === 'anime' ) {
+            console.log('what = ', what)
+            console.log('mal_id = ', mal_id)
+            dispatch(deleteAnimeDetails(mal_id))
+        }
+    }
+
     return (
         <div id = 'list-item'>
+
+            <button 
+                id = "delete-btn" 
+                className='btn btn-outline-danger btn-sm'
+                onClick = { deleteHandler }
+            >Delete</button>
+
             <div id = 'image'>
-                <img src = { image } alt = { `${title}-image` } />
+                <img src = { image } alt = { `${title}` } />
             </div>
 
             <div id = 'info' >

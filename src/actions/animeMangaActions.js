@@ -48,3 +48,11 @@ export const getMangaDetails = (mangaId) => async (dispatch) => {
 
     }
 }
+
+export const deleteAnimeDetails = (animeId) => (dispatch) => {
+    console.log('delteanimeaction, animeId = ', animeId)
+    dispatch({
+        type: 'ANIME_DETAILS_DELETE',
+        payload: animeId
+    })
+}
