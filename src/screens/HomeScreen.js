@@ -32,7 +32,10 @@ const HomeScreen = () => {
                         genres: an.genres.map(g => g.name),
                         airDate: an['aired'].string,
                         image: an.image_url,
-                        title: an.title
+                        title: an.title,
+                        type: an.type,
+                        href: an.url,
+                        mal_score: an.score,
                     }
 
                     return <MediaDetails 
