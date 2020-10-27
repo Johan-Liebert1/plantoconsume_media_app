@@ -3,10 +3,10 @@ export const moviesReducer = (state = { movies: [] }, action) => {
         case 'MOVIE_DETAILS_REQUEST':
             return { loading: true, ...state }
     
-        case 'MOVIE_DETAILS_REQUEST':
-            return { loading: false, movies : [...state.movies, action.payload] }
+        case 'MOVIE_DETAILS_SUCCESS':
+            return { loading: false, movies : [...state.movies, action.payload]}
 
-        case 'MOVIE_DETAILS_REQUEST':
+        case 'MOVIE_DETAILS_FAIL':
             return { loading: false, ...state }
 
         default:

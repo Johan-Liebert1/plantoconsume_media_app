@@ -7,6 +7,7 @@ import store from './store'
 
 import MangaScreen from './screens/MangaScreen'
 import AnimeScreen from './screens/AnimeScreen'
+import MoviesScreen from './screens/MoviesScreen'
 
 
 function App() {
@@ -25,6 +26,12 @@ function App() {
                     exact 
                     path = '/manga'
                     render = {() => <MangaScreen /> }
+                />
+
+                <Route 
+                    exact 
+                    path = '/movies'
+                    render = {() => <MoviesScreen /> }
                 />
                 
             </BrowserRouter>

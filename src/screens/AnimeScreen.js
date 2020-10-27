@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAnimeDetails } from '../actions/animeMangaActions'
-import MediaDetails from '../components/MediaDetails'
+import AnimeMangaComponent from '../components/AnimeMangaComponent'
 
 const AnimeScreen = () => {
 
@@ -37,10 +37,11 @@ const AnimeScreen = () => {
                         title: an.title,
                         type: an.type,
                         href: an.url,
-                        mal_score: an.score,
+                        score: an.score,
+                        rating: an.rating
                     }
 
-                    return <MediaDetails 
+                    return <AnimeMangaComponent 
                                 key = {index} 
                                 arr = { arr }
                                 what = 'anime'

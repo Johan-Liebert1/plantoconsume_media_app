@@ -2,7 +2,7 @@ import React from 'react'
 
 import '../styles/MediaDetails.css'
 // { airing, duration, episodes, genres, airDate, image, title }
-const MediaDetails = ( { arr, what } ) => {
+const AnimeMangaComponent = ( { arr, what } ) => {
 
     // if what == manga, then duration = volumes
 
@@ -15,8 +15,9 @@ const MediaDetails = ( { arr, what } ) => {
         image, 
         title, 
         type, 
-        href, 
-        mal_score } = arr
+        href,
+        rating, 
+        score } = arr
     
     const isAiring = airing ? 'True' : 'False'
 
@@ -30,7 +31,6 @@ const MediaDetails = ( { arr, what } ) => {
 
     return (
         <div id = 'list-item'>
-
             <div id = 'image'>
                 <img src = { image } alt = { `${title}-image` } />
             </div>
@@ -73,6 +73,15 @@ const MediaDetails = ( { arr, what } ) => {
                             </div>
                             <div className='value'>{ airDate }</div>
                         </div>
+
+                        <div>
+                            <div className='attr'>
+                                <strong>
+                                    Rating: 
+                                </strong>
+                            </div>
+                            <div className='value'>{ rating }</div>
+                        </div>
                         
                     </div> 
 
@@ -84,7 +93,7 @@ const MediaDetails = ( { arr, what } ) => {
 
                         <div>
                             <div className='attr'><strong>MAL Score: </strong></div>
-                            <div className='value'>{ mal_score }</div>
+                            <div className='value'>{ score }</div>
                         </div>
 
                         <div>
@@ -100,10 +109,8 @@ const MediaDetails = ( { arr, what } ) => {
 
                 </div>
             </div>
-
-
         </div>
     )
 }
 
-export default MediaDetails
+export default AnimeMangaComponent

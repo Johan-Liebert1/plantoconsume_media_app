@@ -4,11 +4,13 @@ export const getMovieDetails = (imdbId) => async (dispatch) => {
     try {
         dispatch({ type: 'MOVIE_DETAILS_REQUEST' })
 
-        const key = process.env.OPENDB_API_KEY
+        const key = process.env.REACT_APP_OPENDB_API_KEY
+
+        console.log('apikey: ', key)
 
         const { data } = await axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${imdbId}`)
 
-        dipatch({
+        dispatch({
             type: "MOVIE_DETAILS_SUCCESS",
             payload: data
         })
