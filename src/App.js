@@ -2,9 +2,12 @@ import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import HomeScreen from './screens/HomeScreen'
 
 import store from './store'
+
+import MangaScreen from './screens/MangaScreen'
+import AnimeScreen from './screens/AnimeScreen'
+
 
 function App() {
 
@@ -14,8 +17,14 @@ function App() {
 
                 <Route 
                     exact 
-                    path = '/'
-                    render = {() => <HomeScreen /> }
+                    path = '/anime'
+                    render = {() => <AnimeScreen /> }
+                />
+
+                <Route 
+                    exact 
+                    path = '/manga'
+                    render = {() => <MangaScreen /> }
                 />
                 
             </BrowserRouter>

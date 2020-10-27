@@ -2,7 +2,9 @@ import React from 'react'
 
 import '../styles/MediaDetails.css'
 // { airing, duration, episodes, genres, airDate, image, title }
-const MediaDetails = ( { arr } ) => {
+const MediaDetails = ( { arr, what } ) => {
+
+    // if what == manga, then duration = volumes
 
     const { 
         airing, 
@@ -35,42 +37,40 @@ const MediaDetails = ( { arr } ) => {
 
             <div id = 'info' >
                 <div id = 'title'>
-                    <a href = {href} target='_blank'><h2>{title} ({type})</h2></a>
+                    <a href = {href} target='_blank'> 
+                        <h2>{ title }</h2>
+                        { what === 'anime' && <h2 style = {{display : 'inline'}}>({type})</h2> } 
+                    </a>
                 </div>
 
                 <div className = 'section-container'>
 
                     <div className = 'section1'>
-                        {/* <table>
-                            <tr>
-                                <td><strong>Episodes: </strong></td>
-                                <td>{ episodes }</td>
-                            </tr>
 
-                            <tr>
-                                <td><strong>Airing: </strong></td>
-                                <td>{ isAiring }</td>
-                            </tr>
-
-                            <tr>
-                                <td><strong>Air Date: </strong></td>
-                                <td>{ airDate }</td>
-                            </tr>
-                        </table> */}
-
-                        
                         <div>
-                            <div className='attr'><strong>Episodes: </strong></div>
+                            <div className='attr'>
+                                <strong>
+                                    {what === 'anime' ? 'Episodes:' : "Chapters:"} 
+                                </strong>
+                            </div>
                             <div className='value'>{ episodes }</div>
                         </div>
 
                         <div>
-                            <div className='attr'><strong>Airing: </strong></div>
+                            <div className='attr'>
+                                <strong>
+                                    {what === 'anime' ? 'Airing:' : 'Publishing:'} 
+                                </strong>
+                            </div>
                             <div className='value'>{ isAiring }</div>
                         </div>
 
                         <div>
-                            <div className='attr'><strong>Air Date: </strong></div>
+                            <div className='attr'>
+                                <strong>
+                                    {what === 'anime' ? 'Air Date:' : 'Publish Date:'}
+                                </strong>
+                            </div>
                             <div className='value'>{ airDate }</div>
                         </div>
                         
@@ -88,7 +88,11 @@ const MediaDetails = ( { arr } ) => {
                         </div>
 
                         <div>
-                            <div className='attr'><strong>Duration: </strong></div>
+                            <div className='attr'>
+                                <strong>
+                                    {what === 'anime' ? 'Duration:' : 'Volumes:'} 
+                                </strong>
+                            </div>
                             <div className='value'>{ duration }</div>
                         </div>
 

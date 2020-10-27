@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAnimeDetails } from '../actions/animeMangaActions'
 import MediaDetails from '../components/MediaDetails'
 
-const HomeScreen = () => {
+const AnimeScreen = () => {
 
     const dispatch = useDispatch()
 
@@ -13,6 +13,8 @@ const HomeScreen = () => {
 
         // this is how the action creator is mapped to the reducers
         // dispatch( getAnimeDetails(19) )
+        // dispatch( getAnimeDetails(457) )
+        // dispatch( getAnimeDetails(820) )
 
     }, [])
 
@@ -20,7 +22,7 @@ const HomeScreen = () => {
 
     return (
         <div style = {{ "width": "70%", "margin": "0 auto" }} >
-            <h1>This is the home screen</h1>
+            <h1 style = {{ textAlign: 'center' }} >Plan to Watch Anime</h1>
 
             {
                 anime.map((an, index) => {
@@ -41,6 +43,7 @@ const HomeScreen = () => {
                     return <MediaDetails 
                                 key = {index} 
                                 arr = { arr }
+                                what = 'anime'
                             />
                 })
             }
@@ -49,4 +52,4 @@ const HomeScreen = () => {
     )
 }
 
-export default HomeScreen
+export default AnimeScreen
