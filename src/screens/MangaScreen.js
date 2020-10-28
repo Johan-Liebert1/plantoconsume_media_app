@@ -31,7 +31,7 @@ const MangaScreen = () => {
 
     return (
         <div style = {{ 
-            width: window.innerWidth > 750 ? "70%" : "95%", 
+            width: window.innerWidth > 1100 ? "70%" : "95%", 
             margin: "20px auto" }}
         >
             <PageLinksComponent />
@@ -41,14 +41,14 @@ const MangaScreen = () => {
 
             <form onSubmit = {addManga} >
                 <h6 
-                    className = {window.innerHeight > 750 ? 'row' : 'row ml-1' }
+                    className = {window.innerHeight > 1100 ? 'row' : 'row ml-1' }
                 >Add a New Entry</h6>
 
                 <div className='form-group row'>
                     <input 
                         type='text'
                         className={
-                            `form-control col-md-3 col-sm-5 ${ window.innerWidth > 750 ? '' : 'ml-1' }`
+                            `form-control col-md-3 col-sm-5 ${ window.innerWidth > 1100 ? '' : 'ml-1' }`
                         } 
                         value = {mangaId}
                         placeholder = 'Enter Manga Id'

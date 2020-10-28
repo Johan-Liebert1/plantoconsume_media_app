@@ -28,7 +28,7 @@ const MoviesScreen = () => {
 
     return (
         <div style = {{ 
-            width: window.innerWidth > 750 ? "70%" : "95%", 
+            width: window.innerWidth > 1100 ? "70%" : "95%", 
             margin: "20px auto" }}
         >
             <PageLinksComponent />
@@ -37,7 +37,7 @@ const MoviesScreen = () => {
             
             <form onSubmit = {addMovie} >
                 <h6 
-                    className = {window.innerHeight > 750 ? 'row' : 'row ml-1' }
+                    className = {window.innerHeight > 1100 ? 'row' : 'row ml-1' }
                 >Add a New Entry</h6>
                 <div className='form-group row'>
                     <input 
@@ -46,7 +46,7 @@ const MoviesScreen = () => {
                         placeholder = 'Enter Your API Key'
                         onChange = { (e) => setApiKey(e.target.value) }
                         className={
-                            `form-control col-md-3 col-sm-6 ${ window.innerWidth > 750 ? '' : 'ml-2' }`
+                            `form-control col-md-3 col-sm-6 ${ window.innerWidth > 1100 ? '' : 'ml-2' }`
                         } 
                         style = {{backgroundColor: 'rgb(14, 22, 29)', color: 'white'}}
                     />
@@ -57,7 +57,7 @@ const MoviesScreen = () => {
                         placeholder = 'Enter Movie Id'
                         onChange = { (e) => setMovieId(e.target.value) }
                         className={
-                            `form-control col-md-3 col-sm-6 ${ window.innerWidth > 750 ? '' : 'ml-2' }`
+                            `form-control col-md-3 col-sm-6 ${ window.innerWidth > 1100 ? '' : 'ml-2' }`
                         } 
                         style = {{backgroundColor: 'rgb(14, 22, 29)', color: 'white'}}
                     />
@@ -65,9 +65,9 @@ const MoviesScreen = () => {
                         type = 'submit' 
                         className = {
                             `btn btn-outline-primary col-md-1 col-sm-6 
-                            ${window.innerWidth > 750 ? 'ml-5':'ml-2'}`
+                            ${window.innerWidth > 1100 ? 'ml-5':'ml-2'}`
                         }
-                        style = {{display: window.innerHeight > 750 ? 'inline' : 'block'}}
+                        style = {{display: window.innerHeight > 1100 ? 'inline' : 'block'}}
                     > Add</button>
                 </div>
             </form>
