@@ -14,29 +14,28 @@ const MoviesScreen = () => {
 
     const movies = useSelector(state => state.movies)
 
-    useEffect(() => {
-
-        // dispatch( getMovieDetails('tt0120737') )
-
-    }, [])
-
     const addMovie = (e) => {
         e.preventDefault()
         dispatch(getMovieDetails(apiKey, movieId))
     }
 
+    const condb = window.innerWidth > 1100 // condition big
+    const conds = window.innerWidth > 580
+
     return (
         <div style = {{ 
-            width: window.innerWidth > 1100 ? "70%" : "95%", 
+            width: condb ? "70%" : "95%", 
             margin: "20px auto" }}
         >
-            <PageLinksComponent />
+            {
+                condb ? <PageLinksComponent /> : null
+            }
             <h1 style = {{ textAlign: 'center' }} >Plan to Watch Movies</h1>
             <hr style = {{ color: 'white' }}></hr>
             
             <form onSubmit = {addMovie} >
                 <h6 
-                    className = {window.innerHeight > 1100 ? 'row' : 'row ml-1' }
+                    className = {condb ? 'row' : 'row ml-1' }
                 >Add a New Entry</h6>
                 <div className='form-group row'>
                     <input 
@@ -45,7 +44,7 @@ const MoviesScreen = () => {
                         placeholder = 'Enter Your API Key'
                         onChange = { (e) => setApiKey(e.target.value) }
                         className={
-                            `form-control col-md-3 col-sm-6 ${ window.innerWidth > 1100 ? '' : 'ml-2' }`
+                            `form-control col-md-3 col-sm-5 col-7 ${ condb ? '' : conds ? 'ml-1' : 'ml-2' }`
                         } 
                         style = {{backgroundColor: 'rgb(14, 22, 29)', color: 'white'}}
                     />
@@ -56,17 +55,18 @@ const MoviesScreen = () => {
                         placeholder = 'Enter Movie Id'
                         onChange = { (e) => setMovieId(e.target.value) }
                         className={
-                            `form-control col-md-3 col-sm-6 ${ window.innerWidth > 1100 ? '' : 'ml-2' }`
-                        } 
+                            `form-control col-md-3 col-sm-5 col-7 ${ condb ? '' : conds ? 'ml-1' : 'ml-2' }`
+                        }  
                         style = {{backgroundColor: 'rgb(14, 22, 29)', color: 'white'}}
                     />
                     <button 
                         type = 'submit' 
                         className = {
-                            `btn btn-outline-primary col-md-1 col-sm-6 
-                            ${window.innerWidth > 1100 ? 'ml-5':'ml-2'}`
+                            `btn btn-outline-primary col-md-1 col-sm-4 col-5 
+                            ${condb ? 'ml-5' : conds ? '' : 'ml-2'}`
                         }
-                        style = {{display: window.innerHeight > 1100 ? 'inline' : 'block'}}
+                        
+                        style = {{display: condb ? 'inline' : 'block'}}
                     > Add</button>
                 </div>
             </form>

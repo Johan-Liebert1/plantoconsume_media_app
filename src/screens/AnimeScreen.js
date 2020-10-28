@@ -18,25 +18,28 @@ const AnimeScreen = () => {
         dispatch( getAnimeDetails(animeId) )
     }
 
-    console.log(window.innerWidth)
+    const condb = window.innerWidth > 1100 // condition big
+    const conds = window.innerWidth > 580
 
     return (
         <div style = {{ 
-            width: window.innerWidth > 1100 ? "70%" : "95%", 
+            width: condb ? "70%" : "95%", 
             margin: "20px auto" 
             }}
         >
 
             {/* will also depend upon window.innerWidth
             dispaly a navbar component otherwise */}
-            <PageLinksComponent />
-            
+            {
+                condb ? <PageLinksComponent /> : null
+            }
+
             <h1 style = {{ textAlign: 'center' }} >Plan to Watch Anime</h1>
             <hr style = {{ color: 'white' }}></hr>
 
             <form onSubmit = { addAnime }>
                 <h6 
-                    className = {window.innerHeight > 1100 ? 'row' : 'row ml-1' }
+                    className = {condb ? 'row' : 'row ml-1' }
                 >
                     Add a New Entry
                 </h6>
@@ -44,7 +47,7 @@ const AnimeScreen = () => {
                     <input 
                         type='text'
                         className={
-                            `form-control col-md-3 col-sm-5 ${ window.innerWidth > 1100 ? '' : 'ml-1' }`
+                            `form-control col-md-3 col-sm-5 col-7 ${ condb ? '' : conds ? 'ml-1' : 'ml-2' }`
                         } 
                         value = {animeId}
                         placeholder = 'Enter Anime Id'
@@ -53,7 +56,10 @@ const AnimeScreen = () => {
                     />
                     <button 
                         type = 'submit' 
-                        className = 'btn btn-outline-primary col-md-1 ml-5 col-sm-4'
+                        className = {
+                            `btn btn-outline-primary col-md-1 col-sm-4 col-3 
+                            ${condb ? 'ml-5' : conds ? '' : 'ml-2'}`
+                        }
                     >Add</button>
 
                 </div>
@@ -85,9 +91,6 @@ const AnimeScreen = () => {
                 })
                 
             }
-
-
-
 
         <footer 
             style = {{ width: '100%', height: '100px', textAlign: 'center', marginTop: "75px" }}

@@ -34,6 +34,9 @@ const AnimeMangaComponent = ( { arr, what } ) => {
 
     genreString += genres[genres.length - 1]
 
+    const new_title = title.length > 33 ? `${title.slice(0, 31)}...` : title
+    const align_left = title.length > 33
+
     const dispatch = useDispatch()
 
     const deleteHandler = () => {
@@ -62,10 +65,13 @@ const AnimeMangaComponent = ( { arr, what } ) => {
             </div>
 
             <div id = 'info' >
-                <div id = 'title' style ={{display: 'flex'}}>
+                <div id = 'title' style ={{
+                    display: 'flex', alignSelf: align_left ? 'flex-start' : ''
+                    }}
+                >
                     <a href = {href} target='_blank'> 
                         <h5 style = {{ display : 'inline' }}>
-                            { title }
+                            { new_title }
                         </h5>
                         { what === 'anime' && <h5 style = {{display : 'inline'}}> ( {type} )</h5> }
                         
@@ -79,7 +85,7 @@ const AnimeMangaComponent = ( { arr, what } ) => {
                         <div>
                             <div className='attr'>
                                 <strong>
-                                    {what === 'anime' ? 'Episodes:' : "Chapters:"} 
+                                    {what === 'anime' ? 'Episodes: ' : "Chapters: "} 
                                 </strong>
                             </div>
                             <div className='value'>{ episodes }</div>

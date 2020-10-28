@@ -101,7 +101,8 @@ img {
     right: 2%;
 }
 
-@media screen and (max-width: 1100px) {
+
+@media (max-width: 1000px) {
     #delete-btn {
         font-size: 0.6rem;
     }
@@ -117,4 +118,38 @@ img {
     h5 {
         font-size: 0.85rem;
     }
+}
+
+
+@media (max-width: 580px) {
+    #title h5 {
+        size: 0.75rem !important;
+    }
+
+    div {
+        font-size: 0.5rem;
+    }
+
+    strong {
+        font-size: 0.5rem;
+    }
+
+    #list-item {
+        height: 125px;
+        overflow: scroll;
+    } 
+
+    img {
+        height: 100%;
+        width: 91px;
+    } 
+
+    #image {
+        margin-right: 10px;
+    }
+
+    #delete-btn {
+        font-size: 0.5rem;
+    }
+
 }
