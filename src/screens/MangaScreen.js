@@ -5,7 +5,6 @@ import { getMangaDetails } from '../actions/animeMangaActions'
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
 
-import '../styles/Screen.css'
 
 const MangaScreen = () => {
     const [mangaId, setMangaId] = useState('')
