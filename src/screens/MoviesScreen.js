@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovieDetails } from '../actions/moviesActions'
+import MobileNavbarComponent from '../components/MobileNavbarComponent'
 import MovieComponent from '../components/MovieComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
 
@@ -28,9 +29,13 @@ const MoviesScreen = () => {
             margin: "20px auto" }}
         >
             {
-                condb ? <PageLinksComponent /> : null
+                condb ? <PageLinksComponent /> : <MobileNavbarComponent />
             }
-            <h1 style = {{ textAlign: 'center' }} >Plan to Watch Movies</h1>
+            <h1 style = {{ 
+                textAlign: 'center',
+                fontSize: conds ? '' : '2.0rem'  
+                }} >Plan to Watch Movies</h1>
+                
             <hr style = {{ color: 'white' }}></hr>
             
             <form onSubmit = {addMovie} >

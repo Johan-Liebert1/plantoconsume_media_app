@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getMangaDetails } from '../actions/animeMangaActions'
 
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
+import MobileNavbarComponent from '../components/MobileNavbarComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
 
 
@@ -27,10 +28,13 @@ const MangaScreen = () => {
             margin: "20px auto" }}
         >
             {
-                condb ? <PageLinksComponent /> : null
+                condb ? <PageLinksComponent /> : <MobileNavbarComponent />
             }
             
-            <h1 style = {{ textAlign: 'center' }} >Plan to Read Manga</h1>
+            <h1 style = {{ 
+                textAlign: 'center',
+                fontSize: conds ? '' : '2.0rem'  
+                }} >Plan to Read Manga</h1>
 
             <hr style = {{ color: 'white' }}></hr>
 

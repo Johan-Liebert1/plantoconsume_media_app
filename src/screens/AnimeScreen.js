@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAnimeDetails } from '../actions/animeMangaActions'
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
+import MobileNavbarComponent from '../components/MobileNavbarComponent'
 
 
 const AnimeScreen = () => {
@@ -31,10 +32,14 @@ const AnimeScreen = () => {
             {/* will also depend upon window.innerWidth
             dispaly a navbar component otherwise */}
             {
-                condb ? <PageLinksComponent /> : null
+                condb ? <PageLinksComponent /> : <MobileNavbarComponent />
             }
 
-            <h1 style = {{ textAlign: 'center' }} >Plan to Watch Anime</h1>
+            <h1 style = {{ 
+                textAlign: 'center',
+                fontSize: conds ? '' : '2.0rem'  
+                }} 
+            >Plan to Watch Anime</h1>
             <hr style = {{ color: 'white' }}></hr>
 
             <form onSubmit = { addAnime }>
