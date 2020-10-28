@@ -2,7 +2,6 @@ import React from 'react'
 import {useDispatch} from 'react-redux'
 import { deleteMovieDetails } from '../actions/moviesActions'
 
-import '../styles/MediaDetails.css'
 
 const MovieComponent = ( { arr } ) => {
 

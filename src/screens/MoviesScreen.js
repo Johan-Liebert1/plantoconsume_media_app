@@ -5,7 +5,6 @@ import { getMovieDetails } from '../actions/moviesActions'
 import MovieComponent from '../components/MovieComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
 
-import '../styles/Screen.css'
 
 const MoviesScreen = () => {
     const [movieId, setMovieId] = useState('')

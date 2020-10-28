@@ -4,7 +4,6 @@ import { getAnimeDetails } from '../actions/animeMangaActions'
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
 
-import '../styles/Screen.css'
 
 const AnimeScreen = () => {
 
