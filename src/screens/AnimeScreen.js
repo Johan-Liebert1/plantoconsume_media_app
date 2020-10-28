@@ -4,6 +4,8 @@ import { getAnimeDetails } from '../actions/animeMangaActions'
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
 
+import '../styles/Screen.css'
+
 const AnimeScreen = () => {
 
     const dispatch = useDispatch()
@@ -17,18 +19,34 @@ const AnimeScreen = () => {
         dispatch( getAnimeDetails(animeId) )
     }
 
+    console.log(window.innerWidth)
+
     return (
-        <div style = {{ "width": "70%", "margin": "20px auto" }} >
+        <div style = {{ 
+            width: window.innerWidth > 750 ? "70%" : "95%", 
+            margin: "20px auto" 
+            }}
+        >
+
+            {/* will also depend upon window.innerWidth
+            dispaly a navbar component otherwise */}
             <PageLinksComponent />
+            
             <h1 style = {{ textAlign: 'center' }} >Plan to Watch Anime</h1>
             <hr style = {{ color: 'white' }}></hr>
 
             <form onSubmit = { addAnime }>
-                <h6 className = 'row'>Add a New Entry</h6>
+                <h6 
+                    className = {window.innerHeight > 750 ? 'row' : 'row ml-1' }
+                >
+                    Add a New Entry
+                </h6>
                 <div className='form-group row'>
                     <input 
                         type='text'
-                        className='form-control col-md-3'
+                        className={
+                            `form-control col-md-3 col-sm-5 ${ window.innerWidth > 750 ? '' : 'ml-1' }`
+                        } 
                         value = {animeId}
                         placeholder = 'Enter Anime Id'
                         onChange = { (e) => setAnimeId(e.target.value) }
@@ -36,7 +54,7 @@ const AnimeScreen = () => {
                     />
                     <button 
                         type = 'submit' 
-                        className = 'btn btn-outline-primary col-md-1 ml-5'
+                        className = 'btn btn-outline-primary col-md-1 ml-5 col-sm-4'
                     >Add</button>
 
                 </div>

@@ -5,6 +5,8 @@ import { getMovieDetails } from '../actions/moviesActions'
 import MovieComponent from '../components/MovieComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
 
+import '../styles/Screen.css'
+
 const MoviesScreen = () => {
     const [movieId, setMovieId] = useState('')
     const [apiKey, setApiKey] = useState('')
@@ -25,34 +27,47 @@ const MoviesScreen = () => {
     }
 
     return (
-        <div style = {{ "width": "70%", "margin": "20px auto" }}>
+        <div style = {{ 
+            width: window.innerWidth > 750 ? "70%" : "95%", 
+            margin: "20px auto" }}
+        >
             <PageLinksComponent />
             <h1 style = {{ textAlign: 'center' }} >Plan to Watch Movies</h1>
             <hr style = {{ color: 'white' }}></hr>
             
             <form onSubmit = {addMovie} >
-                <h6 className='row'>Add a New Entry</h6>
+                <h6 
+                    className = {window.innerHeight > 750 ? 'row' : 'row ml-1' }
+                >Add a New Entry</h6>
                 <div className='form-group row'>
                     <input 
                         type='text'
                         value = {apiKey}
                         placeholder = 'Enter Your API Key'
                         onChange = { (e) => setApiKey(e.target.value) }
-                        className='form-control col-md-3'
+                        className={
+                            `form-control col-md-3 col-sm-6 ${ window.innerWidth > 750 ? '' : 'ml-2' }`
+                        } 
                         style = {{backgroundColor: 'rgb(14, 22, 29)', color: 'white'}}
                     />
-                    <div className='col-md-1'></div>
+                    <div className='col-md-1 col-sm-0'></div>
                     <input 
                         type='text'
                         value = {movieId}
                         placeholder = 'Enter Movie Id'
                         onChange = { (e) => setMovieId(e.target.value) }
-                        className='form-control col-md-3'
+                        className={
+                            `form-control col-md-3 col-sm-6 ${ window.innerWidth > 750 ? '' : 'ml-2' }`
+                        } 
                         style = {{backgroundColor: 'rgb(14, 22, 29)', color: 'white'}}
                     />
                     <button 
                         type = 'submit' 
-                        className = 'btn btn-outline-primary col-md-1 ml-5'
+                        className = {
+                            `btn btn-outline-primary col-md-1 col-sm-6 
+                            ${window.innerWidth > 750 ? 'ml-5':'ml-2'}`
+                        }
+                        style = {{display: window.innerHeight > 750 ? 'inline' : 'block'}}
                     > Add</button>
                 </div>
             </form>

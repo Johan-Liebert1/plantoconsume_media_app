@@ -42,7 +42,7 @@ const MovieComponent = ( { arr } ) => {
             <div id = 'info' >
                 <div id = 'title'>
                     <a href = {href} target='_blank'> 
-                        <h2 style = {{ display : 'inline' }}>{ title }</h2>
+                        <h5 style = {{ display : 'inline' }}>{ title }</h5>
                     </a>
                 </div>
 

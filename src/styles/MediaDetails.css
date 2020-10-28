@@ -100,3 +100,21 @@ img {
     top: 5%;
     right: 2%;
 }
+
+@media screen and (max-width: 750px) {
+    #delete-btn {
+        font-size: 0.6rem;
+    }
+
+    div {
+        font-size: 0.75rem;
+    }
+
+    strong {
+        font-size: 0.75rem;
+    }
+
+    h5 {
+        font-size: 0.85rem;
+    }
+}

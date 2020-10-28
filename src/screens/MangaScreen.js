@@ -5,6 +5,8 @@ import { getMangaDetails } from '../actions/animeMangaActions'
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
 
+import '../styles/Screen.css'
+
 const MangaScreen = () => {
     const [mangaId, setMangaId] = useState('')
 
@@ -28,18 +30,26 @@ const MangaScreen = () => {
     }
 
     return (
-        <div style = {{ "width": "70%", "margin": "20px auto" }} >
+        <div style = {{ 
+            width: window.innerWidth > 750 ? "70%" : "95%", 
+            margin: "20px auto" }}
+        >
             <PageLinksComponent />
             <h1 style = {{ textAlign: 'center' }} >Plan to Read Manga</h1>
 
             <hr style = {{ color: 'white' }}></hr>
 
             <form onSubmit = {addManga} >
-                <h6 className = 'row'>Add a New Entry</h6>
+                <h6 
+                    className = {window.innerHeight > 750 ? 'row' : 'row ml-1' }
+                >Add a New Entry</h6>
+
                 <div className='form-group row'>
                     <input 
                         type='text'
-                        className='form-control col-md-3'
+                        className={
+                            `form-control col-md-3 col-sm-5 ${ window.innerWidth > 750 ? '' : 'ml-1' }`
+                        } 
                         value = {mangaId}
                         placeholder = 'Enter Manga Id'
                         onChange = { (e) => setMangaId(e.target.value) }
@@ -47,7 +57,7 @@ const MangaScreen = () => {
                     />
                     <button 
                         type = 'submit' 
-                        className = 'btn btn-outline-primary col-md-1 ml-5'
+                        className = 'btn btn-outline-primary col-md-1 ml-5 col-sm-4'
                     > Add</button>
                 </div>
             </form>
@@ -79,11 +89,11 @@ const MangaScreen = () => {
                 })
             }
 
-        <footer 
-            style = {{ width: '100%', height: '100px', textAlign: 'center', marginTop: "75px" }}
-        >
-            API Used : <a href = "https://jikan.moe/" target = "_blank">Jikan API</a>
-        </footer>
+            <footer 
+                style = {{ width: '100%', height: '100px', textAlign: 'center', marginTop: "75px" }}
+            >
+                API Used : <a href = "https://jikan.moe/" target = "_blank">Jikan API</a>
+            </footer>
 
         </div>
     )
