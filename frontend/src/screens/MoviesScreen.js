@@ -36,7 +36,6 @@ const MoviesScreen = () => {
                 fontSize: conds ? '' : '2.0rem'  
                 }} >Plan to Watch Movies</h1>
                 
-            <hr style = {{ color: 'white' }}></hr>
             
             <form onSubmit = {addMovie} >
                 <h6 

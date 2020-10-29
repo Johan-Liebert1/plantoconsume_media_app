@@ -40,7 +40,6 @@ const AnimeScreen = () => {
                 fontSize: conds ? '' : '2.0rem'  
                 }} 
             >Plan to Watch Anime</h1>
-            <hr style = {{ color: 'white' }}></hr>
 
             <form onSubmit = { addAnime }>
                 <h6 

@@ -36,7 +36,6 @@ const MangaScreen = () => {
                 fontSize: conds ? '' : '2.0rem'  
                 }} >Plan to Read Manga</h1>
 
-            <hr style = {{ color: 'white' }}></hr>
 
             <form onSubmit = {addManga} >
                 <h6 
