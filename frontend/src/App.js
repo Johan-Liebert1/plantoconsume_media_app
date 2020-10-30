@@ -27,19 +27,19 @@ function App() {
                 <Route 
                     exact 
                     path = '/anime'
-                    render = {() => <AnimeScreen /> }
+                    render = {(routeProps) => <AnimeScreen {...routeProps} /> }
                 />
 
                 <Route 
                     exact 
                     path = '/manga'
-                    render = {() => <MangaScreen /> }
+                    render = {(routeProps) => <MangaScreen {...routeProps} /> }
                 />
 
                 <Route 
                     exact 
                     path = '/movies'
-                    render = {() => <MoviesScreen /> }
+                    render = {(routeProps) => <MoviesScreen {...routeProps} /> }
                 />
 
                 <Route 

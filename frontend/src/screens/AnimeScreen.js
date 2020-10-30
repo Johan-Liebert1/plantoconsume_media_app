@@ -4,6 +4,7 @@ import { getAnimeDetails } from '../actions/animeMangaActions'
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
 import MobileNavbarComponent from '../components/MobileNavbarComponent'
+import DesktopNavbarComponent from '../components/DesktopNavbarComponent'
 
 
 const AnimeScreen = () => {
@@ -23,6 +24,10 @@ const AnimeScreen = () => {
     const conds = window.innerWidth > 580
 
     return (
+        <>
+        {
+            condb && <DesktopNavbarComponent />
+        }
         <div style = {{ 
             width: condb ? "70%" : "95%", 
             margin: "20px auto" 
@@ -103,6 +108,7 @@ const AnimeScreen = () => {
         </footer>
             
         </div>
+        </>
     )
 }
 
