@@ -4,11 +4,14 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { animeReducer, mangaReducer } from './reducers/animeMangaReducers'
 import { moviesReducer } from './reducers/moviesReducers'
+import { userLoginReducer, userRegisterReducer } from './reducers/userReducers'
 
 const reducers = combineReducers({
     anime: animeReducer,
     manga: mangaReducer,
-    movies: moviesReducer
+    movies: moviesReducer,
+    userLogin: userLoginReducer,
+    userRegister: userRegisterReducer
 })
 
 const animeFromLocalStorage = window.localStorage.getItem('anime') ? 

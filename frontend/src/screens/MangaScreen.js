@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMangaDetails } from '../actions/animeMangaActions'
 
@@ -93,7 +93,7 @@ const MangaScreen = () => {
             <footer 
                 style = {{ width: '100%', height: '100px', textAlign: 'center', marginTop: "75px" }}
             >
-                API Used : <a href = "https://jikan.moe/" target = "_blank">Jikan API</a>
+                API Used : <a href = "https://jikan.moe/" target = "_blank" rel="noreferrer">Jikan API</a>
             </footer>
 
         </div>

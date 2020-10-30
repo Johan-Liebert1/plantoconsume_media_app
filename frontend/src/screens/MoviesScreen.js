@@ -103,7 +103,7 @@ const MoviesScreen = () => {
         <footer 
             style = {{ width: '100%', height: '100px', textAlign: 'center', marginTop: "75px" }}
         >
-            API Used : <a href = "http://www.omdbapi.com/" target = "_blank">OMDb API</a>
+            API Used : <a href = "http://www.omdbapi.com/" target = "_blank" rel="noreferrer">OMDb API</a>
         </footer>
 
         </div>

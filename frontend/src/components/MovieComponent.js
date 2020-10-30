@@ -10,8 +10,7 @@ const MovieComponent = ( { arr } ) => {
         genres, 
         airDate, 
         image, 
-        title, 
-        type, 
+        title,  
         href, 
         score,
         country,
@@ -35,12 +34,12 @@ const MovieComponent = ( { arr } ) => {
             >Delete</button>
 
             <div id = 'image'>
-                <img src = { image } alt = { `${title}-image` } />
+                <img src = { image } alt = { `${title}` } />
             </div>
 
             <div id = 'info' >
                 <div id = 'title'>
-                    <a href = {href} target='_blank'> 
+                    <a href = {href} target='_blank' rel="noreferrer"> 
                         <h5 style = {{ display : 'inline' }}>{ title }</h5>
                     </a>
                 </div>

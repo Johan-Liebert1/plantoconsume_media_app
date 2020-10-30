@@ -9,6 +9,7 @@ import MangaScreen from './screens/MangaScreen'
 import AnimeScreen from './screens/AnimeScreen'
 import MoviesScreen from './screens/MoviesScreen'
 import AllDataScreen from './screens/AllDataScreen'
+import HomeScreen from './screens/HomeScreen'
 
 
 function App() {
@@ -16,6 +17,12 @@ function App() {
     return (
         <Provider store = {store}>
             <BrowserRouter>
+
+                <Route 
+                    exact
+                    path = '/'
+                    render = { (routeProps) => <HomeScreen {...routeProps} /> }
+                />
 
                 <Route 
                     exact 

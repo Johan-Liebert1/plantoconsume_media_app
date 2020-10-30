@@ -69,7 +69,7 @@ const AnimeMangaComponent = ( { arr, what } ) => {
                     display: 'flex', alignSelf: align_left ? 'flex-start' : ''
                     }}
                 >
-                    <a href = {href} target='_blank'> 
+                    <a href = {href} target='_blank' rel="noreferrer"> 
                         <h5 style = {{ display : 'inline' }}>
                             { new_title }
                         </h5>
