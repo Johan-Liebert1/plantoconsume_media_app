@@ -15,10 +15,11 @@ const MoviesScreen = () => {
     const dispatch = useDispatch()
 
     const movies = useSelector(state => state.movies)
+    const { userInfo } = useSelector(state => state.userLogin)
 
     const addMovie = (e) => {
         e.preventDefault()
-        dispatch(getMovieDetails(apiKey, movieId))
+        dispatch(getMovieDetails(userInfo.token, apiKey, movieId))
     }
 
     const condb = window.innerWidth > 1100 // condition big

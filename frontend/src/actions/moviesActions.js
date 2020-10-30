@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const getMovieDetails = (apiKey, imdbId) => async (dispatch) => {
+export const getMovieDetails = (token, apiKey, imdbId) => async (dispatch) => {
     try {
         dispatch({ type: 'MOVIE_DETAILS_REQUEST' })
 
@@ -13,6 +13,15 @@ export const getMovieDetails = (apiKey, imdbId) => async (dispatch) => {
             payload: data
         })
 
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json',
+                authorization: `Bearer ${token}`
+            }
+        }
+
+        const resp = await axios.post('/movie', data, config)
+
     }
 
     catch (error) {
@@ -22,6 +31,37 @@ export const getMovieDetails = (apiKey, imdbId) => async (dispatch) => {
             payload : error.response && error.response.data.message ? error.response.data.message : error.message
         })
 
+    }
+}
+
+
+export const getMoivesDetailsFromBackend = (token) => (dispatch) => {
+    try {
+
+        dispatch({type: 'MOVIE_DETAILS_REQUEST_BACKEND'})
+
+        const config = {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        }
+
+        const { data } = axios.get('/movies', config)
+
+        dispatch({
+            type: 'MOVIE_DETAILS_SUCCESS_BACKEND',
+            payload: data
+        })
+
+        window.localStorage.setItem("movies", data)
+
+    }
+
+    catch (error) {
+        dispatch({
+            type: 'MOVIE_DETAILS_FAIL_BACKEND',
+            payload: error
+        })
     }
 }
 

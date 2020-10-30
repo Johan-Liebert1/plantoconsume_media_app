@@ -49,6 +49,7 @@ listRouter.post('/anime', protect, asyncHandler( async (req, res) => {
 }))
 
 listRouter.get('/anime', protect, asyncHandler( async (req, res) => {
+
     const list = await List.findOne({ user: req.user._id })
 
     if (!list) {
@@ -56,8 +57,10 @@ listRouter.get('/anime', protect, asyncHandler( async (req, res) => {
         res.json("no list found")
     }
 
-    res.status(200)
-    res.json(list.anime)
+    else {
+        res.status(200)
+        res.json(list.anime)
+    }
 
 }))
 

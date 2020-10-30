@@ -15,6 +15,24 @@ export const animeReducer = (state = { anime: [] }, action) => {
 
         case 'ANIME_DETAILS_FAIL':
             return { loading: false, ...state }
+        
+        // make requests to the backend server
+        // action.payload is a list of objects
+
+        case 'ANIME_DETAILS_REQUEST_BACKEND':
+            return { loading: true, ...state }
+
+        case 'ANIME_DETAILS_SUCCESS_BACKEND':
+            window.localStorage.setItem(
+                'anime', 
+                JSON.stringify([...action.payload])
+            )
+
+            return { loading: false, anime: [...action.payload] }
+
+        case 'ANIME_DETAILS_FAIL_BACKEND':
+            return { loading: false, ...state }
+
 
         case 'ANIME_DETAILS_DELETE':
             let anime = state.anime.filter(an => an.mal_id !== action.payload)
@@ -49,6 +67,19 @@ export const mangaReducer = (state = { manga: [] }, action) => {
 
         case 'MANGA_DETAILS_FAIL':
             return { loading: false, ...state }
+
+
+
+        case 'MANGA_DETAILS_REQUEST_BACKEND':
+            return { loading: true, ...state }
+
+        case 'MANGA_DETAILS_SUCCESS_BACKEND':
+            return { loading: false, manga: [...action.payload] }
+
+        case 'MANGA_DETAILS_FAIL_BACKEND':
+            return { loading: false, ...state }
+
+
 
         case 'MANGA_DETAILS_DELETE':
             let manga = state.manga.filter(man => man.mal_id !== action.payload)

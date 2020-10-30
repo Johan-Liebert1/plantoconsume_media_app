@@ -73,9 +73,8 @@ export const getMangaDetails = (token, mangaId) => async (dispatch) => {
 // should do this when the user logs in 
 export const getAnimeListFromBackend = (token) => async (dispatch) => {
     try {
-        console.log('inside getlistfrombackend')
 
-        dispatch({ type : 'ANIME_DETAILS_REQUEST' })
+        dispatch({ type : 'ANIME_DETAILS_REQUEST_BACKEND' })
 
         const config = {
             headers : {
@@ -87,12 +86,12 @@ export const getAnimeListFromBackend = (token) => async (dispatch) => {
 
         console.log(data)
 
-        for (let i = 0; i < data; i++) {
-            dispatch({
-                type: "ANIME_DETAILS_SUCCESS",
-                payload: data[i]
-            })
-        }        
+        
+        dispatch({
+            type: "ANIME_DETAILS_SUCCESS_BACKEND",
+            payload: data
+        })
+             
 
         window.localStorage.setItem('anime', JSON.stringify(data))
 
@@ -101,7 +100,7 @@ export const getAnimeListFromBackend = (token) => async (dispatch) => {
     catch (error) {
 
         dispatch({
-            type: 'ANIME_DETAILS_FAIL',
+            type: 'ANIME_DETAILS_FAIL_BACKEND',
             payload: error
         })
 
@@ -112,7 +111,7 @@ export const getAnimeListFromBackend = (token) => async (dispatch) => {
 // should do this when the user logs in 
 export const getMangaListFromBackend = (token) => async (dispatch) => {
     try {
-        dispatch({ type : 'MANGA_DETAILS_REQUEST' })
+        dispatch({ type : 'MANGA_DETAILS_REQUEST_BACKEND' })
 
         const config = {
             headers : {
@@ -124,14 +123,11 @@ export const getMangaListFromBackend = (token) => async (dispatch) => {
 
         console.log(data)
 
-        for (let i = 0; i < data; i++) {
+        dispatch({
+            type: "MANGA_DETAILS_SUCCESS_BACKEND",
+            payload: data
+        })
 
-            dispatch({
-                type: "MANGA_DETAILS_SUCCESS",
-                payload: data[i]
-            })
-
-        }        
 
         window.localStorage.setItem('manga', JSON.stringify(data))
 
@@ -140,7 +136,7 @@ export const getMangaListFromBackend = (token) => async (dispatch) => {
     catch (error) {
 
         dispatch({
-            type: 'MANGA_DETAILS_FAIL',
+            type: 'MANGA_DETAILS_FAIL_BACKEND',
             payload: error
         })
 

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { userLogin,  userRegister } from '../actions/userActions'
 
-const HomeScreen = ({ history }) => {
+const HomeScreen = ({ history, location }) => {
 
     const [login, setLogin] = useState(true)
     const [username, setUsername] = useState('')
