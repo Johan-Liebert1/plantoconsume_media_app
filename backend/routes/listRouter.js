@@ -48,7 +48,94 @@ listRouter.post('/anime', protect, asyncHandler( async (req, res) => {
     }
 }))
 
-listRouter.get('/anime', protect, asyncHandler ( async (req, res) => {
+
+// Manga routes
+
+listRouter.post('/manga', protect, asyncHandler( async (req, res) => {
+    const data = req.body
+    const user = req.user
+
+    const list = await List.findOne({ user: user._id })
+
+    if ( !list ){
+        const newList = await List.create({
+            user: user._id
+        })
+
+        const addedManga = await newList.manga.push(data)
+
+        newList.save()
+
+        if (addedManga) {
+            res.status(201)
+            res.json(addedManga)
+        }
+
+        else {
+            res.json({
+                "Error": "Error",
+                "message": "Could not be created"
+            })
+        }
+    }
+    
+    else {
+        const addedManga = await list.manga.push(data)
+
+        const savedList = await list.save()
+
+        if (savedList) {
+            res.status(200)
+            res.json(addedManga)
+        }
+    }
+}))
+
+
+// Movie routes
+
+listRouter.post('/movie', protect, asyncHandler( async (req, res) => {
+    const data = req.body
+    const user = req.user
+
+    const list = await List.findOne({ user: user._id })
+
+    if ( !list ){
+        const newList = await List.create({
+            user: user._id
+        })
+
+        const addedMovie = await newList.movies.push(data)
+
+        newList.save()
+
+        if (addedMovie) {
+            res.status(201)
+            res.json(addedMovie)
+        }
+
+        else {
+            res.json({
+                "Error": "Error",
+                "message": "Could not be created"
+            })
+        }
+    }
+    
+    else {
+        const addedMovie = await list.movies.push(data)
+
+        const savedList = await list.save()
+
+        if (savedList) {
+            res.status(200)
+            res.json(addedMovie)
+        }
+    }
+}))
+
+
+listRouter.get('/lists', protect, asyncHandler ( async (req, res) => {
     const user = req.user
 
     const list = await List.findOne({ user: user._id })
