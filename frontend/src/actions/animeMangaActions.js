@@ -1,7 +1,5 @@
 import axios from 'axios' 
 
-import { useSelector } from 'react-redux'
-
 export const getAnimeDetails = (token, animeId) => async (dispatch) => {
     // the => (dispatch) => {...} is necessary
     try {
@@ -132,7 +130,7 @@ export const getMangaListFromBackend = (token) => async (dispatch) => {
                 type: "MANGA_DETAILS_SUCCESS",
                 payload: data[i]
             })
-            
+
         }        
 
         window.localStorage.setItem('manga', JSON.stringify(data))

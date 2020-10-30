@@ -2,8 +2,9 @@ import mongoose from 'mongoose'
 
 const connectDB = async () => {
     try {
-        console.log(process.env.MONGO_URI)
-        const conn = await mongoose.connect('mongodb+srv://dude:dude@emazon.7wcq7.mongodb.net/plantowatch?retryWrites=true&w=majority', {
+        const uri = process.env.MONGO_URI 
+
+        const conn = await mongoose.connect(uri , {
             useUnifiedTopology : true,
             useNewUrlParser : true,
             useCreateIndex : true
