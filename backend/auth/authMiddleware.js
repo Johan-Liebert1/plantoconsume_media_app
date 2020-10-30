@@ -9,7 +9,7 @@ const protect = asyncHandler( async (req, res, next) => {
         try {
             token = req.headers.authorization.split(' ')[1] // which will be the token
 
-            const decoded = jwt.verify(token, process.env.JWT_SECRET)
+            const decoded = jwt.verify(token, 'secretkey')
 
             // since we used userId to generate the token, decoding it will give back the userID
             // add this user to the user property of request
