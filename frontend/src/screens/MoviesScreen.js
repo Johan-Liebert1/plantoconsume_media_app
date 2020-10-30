@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovieDetails } from '../actions/moviesActions'
+import DesktopNavbarComponent from '../components/DesktopNavbarComponent'
 import MobileNavbarComponent from '../components/MobileNavbarComponent'
 import MovieComponent from '../components/MovieComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
@@ -24,6 +25,10 @@ const MoviesScreen = () => {
     const conds = window.innerWidth > 580
 
     return (
+        <>
+        {
+            condb && <DesktopNavbarComponent />
+        }
         <div style = {{ 
             width: condb ? "70%" : "95%", 
             margin: "20px auto" }}
@@ -107,6 +112,7 @@ const MoviesScreen = () => {
         </footer>
 
         </div>
+        </>
     )
 }
 

@@ -48,6 +48,19 @@ listRouter.post('/anime', protect, asyncHandler( async (req, res) => {
     }
 }))
 
+listRouter.get('/anime', protect, asyncHandler( async (req, res) => {
+    const list = await List.findOne({ user: req.user._id })
+
+    if (!list) {
+        res.status(404)
+        res.json("no list found")
+    }
+
+    res.status(200)
+    res.json(list.anime)
+
+}))
+
 
 // Manga routes
 
@@ -91,6 +104,20 @@ listRouter.post('/manga', protect, asyncHandler( async (req, res) => {
     }
 }))
 
+listRouter.get('/manga', protect, asyncHandler( async (req, res) => {
+    const list = await List.findOne({ user: req.user._id })
+
+    if (!list) {
+        res.status(404)
+        res.json("no list found")
+    }
+
+    res.status(200)
+    res.json(list.manga)
+
+}))
+
+
 
 // Movie routes
 
@@ -132,6 +159,20 @@ listRouter.post('/movie', protect, asyncHandler( async (req, res) => {
             res.json(addedMovie)
         }
     }
+}))
+
+
+listRouter.get('/movies', protect, asyncHandler( async (req, res) => {
+    const list = await List.findOne({ user: req.user._id })
+
+    if (!list) {
+        res.status(404)
+        res.json("no list found")
+    }
+
+    res.status(200)
+    res.json(list.movies)
+
 }))
 
 

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getAnimeListFromBackend, getMangaListFromBackend } from './animeMangaActions'
 
 export const userLogin = (username, password) => async (dispatch) => {
     try {
@@ -18,6 +19,11 @@ export const userLogin = (username, password) => async (dispatch) => {
             type: 'USER_LOGIN_SUCCESS',
             payload: data
         })
+
+        window.localStorage.setItem("userInfo", JSON.stringify(data))
+
+        dispatch( getAnimeListFromBackend(data.token) )
+        dispatch( getMangaListFromBackend(data.token) )
     }
 
     catch (error) {
@@ -53,6 +59,8 @@ export const userRegister = (username, password) => async (dispatch) => {
             type: 'USER_LOGIN_SUCCESS',
             payload: data
         })
+
+        window.localStorage.setItem("userInfo", JSON.stringify(data))
         
     }
 

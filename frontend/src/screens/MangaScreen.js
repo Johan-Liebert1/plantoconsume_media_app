@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getMangaDetails } from '../actions/animeMangaActions'
 
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
+import DesktopNavbarComponent from '../components/DesktopNavbarComponent'
 import MobileNavbarComponent from '../components/MobileNavbarComponent'
 import PageLinksComponent from '../components/PageLinksComponent'
 
@@ -14,15 +15,27 @@ const MangaScreen = () => {
 
     const { manga } = useSelector(state => state.manga)
 
+    const { userInfo } = useSelector(state => state.userLogin)
+
     const condb = window.innerWidth > 1100 // condition big
     const conds = window.innerWidth > 580
 
+    
+
     const addManga = (e) => {
         e.preventDefault()
-        dispatch(getMangaDetails(mangaId))
+
+        const mangaExists = manga.find(m => m.mal_id === Number(mangaId))
+
+        if (!mangaExists)
+            dispatch(getMangaDetails(userInfo.token, mangaId))
     }
 
     return (
+        <>
+        {
+            condb && <DesktopNavbarComponent />
+        }
         <div style = {{ 
             width: condb ? "70%" : "95%", 
             margin: "20px auto" }}
@@ -45,7 +58,7 @@ const MangaScreen = () => {
                 <div className='form-group row'>
                     <input 
                         type='text'
-                        className={
+                        className = {
                             `form-control col-md-3 col-sm-5 col-7 ${ condb ? '' : conds ? 'ml-1' : 'ml-2' }`
                         } 
                         value = {mangaId}
@@ -97,6 +110,7 @@ const MangaScreen = () => {
             </footer>
 
         </div>
+        </>
     )
 }
 

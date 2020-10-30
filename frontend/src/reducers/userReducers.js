@@ -11,6 +11,10 @@ export const userLoginReducer = (state = {}, action) => {
             return { loading: false, error : action.payload }
 
         case 'USER_LOGOUT_REQUEST':
+            window.localStorage.setItem('userInfo', '')
+            window.localStorage.setItem('anime', '')
+            window.localStorage.setItem('manga', '')
+            window.localStorage.setItem('movies', '')
             return {}
 
         default:
@@ -30,9 +34,6 @@ export const userRegisterReducer = (state = {}, action) => {
         
         case 'USER_REGISTER_FAIL':
             return { loading: false, error : action.payload }
-
-        case 'USER_LOGOUT_REQUEST':
-            return {}
 
         default:
             return state

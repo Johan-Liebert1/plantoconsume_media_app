@@ -6,7 +6,6 @@ export const animeReducer = (state = { anime: [] }, action) => {
             return { loading: true, ...state }
 
         case 'ANIME_DETAILS_SUCCESS':
-            // console.log('anime-deteials-success')
             window.localStorage.setItem(
                 'anime', 
                 JSON.stringify([...state.anime, action.payload])
@@ -18,8 +17,6 @@ export const animeReducer = (state = { anime: [] }, action) => {
             return { loading: false, ...state }
 
         case 'ANIME_DETAILS_DELETE':
-            console.log('anime_details_delete')
-
             let anime = state.anime.filter(an => an.mal_id !== action.payload)
 
             window.localStorage.setItem(

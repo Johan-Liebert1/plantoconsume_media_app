@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAnimeDetails } from '../actions/animeMangaActions'
 import AnimeMangaComponent from '../components/AnimeMangaComponent'
@@ -11,13 +11,30 @@ const AnimeScreen = () => {
 
     const dispatch = useDispatch()
 
-    const { anime } = useSelector(state => state.anime)
+    const { anime, loading } = useSelector(state => state.anime)
+
+    const { userInfo } = useSelector(state => state.userLogin)
 
     const [animeId, setAnimeId] = useState('')
 
+    // useEffect(() => {
+
+    //     console.log('useEffect called')
+
+    //     if ( userInfo && !window.localStorage.getItem('anime') ) {
+    //         dispatch( getAnimeDetailsFromBackend(userInfo.token) )
+    //     }
+
+    // }, [])
+
     const addAnime = (e) => {
         e.preventDefault()
-        dispatch( getAnimeDetails(animeId) )
+
+        const animeExists = anime.find(a => a.mal_id === Number(animeId))
+
+        if (!animeExists)
+            dispatch( getAnimeDetails(userInfo.token, animeId) )
+
     }
 
     const condb = window.innerWidth > 1100 // condition big
@@ -73,6 +90,9 @@ const AnimeScreen = () => {
 
                 </div>
             </form>
+            
+            { loading && <p>Loading details...</p> }
+
             {
                 anime.map((an, index) => {
 

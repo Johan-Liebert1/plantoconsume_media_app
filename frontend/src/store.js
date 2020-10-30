@@ -23,6 +23,9 @@ const mangaFromLocalStorage = window.localStorage.getItem('manga') ?
 const moviesFromLocalStorage = window.localStorage.getItem('movies') ? 
     JSON.parse(window.localStorage.getItem('movies')) : []
 
+const userInfoFromLocalStorage = window.localStorage.getItem('userInfo') ?
+    JSON.parse(window.localStorage.getItem('userInfo')) : {}
+
 const initialState = {
     anime: {
         anime: animeFromLocalStorage
@@ -34,6 +37,10 @@ const initialState = {
 
     movies: {
         movies: moviesFromLocalStorage
+    },
+
+    userLogin : {
+        userInfo: userInfoFromLocalStorage
     }
 }
 
