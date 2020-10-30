@@ -1,5 +1,6 @@
 import express from 'express'
 import User from './models/userModel.js'
+import List from './models/listModel.js'
 import connectDB from './config/db.js'
 import asyncHandler from 'express-async-handler'
 
@@ -8,7 +9,7 @@ connectDB()
 app.use(express.json())
 
 app.get("/", (req, res) => {
-    res.json({ "message": "You are now connected" })
+    res.json({ "message" : "You are now connected" })
 })
 
 app.post('/register', asyncHandler( async (req, res) => {
@@ -18,7 +19,7 @@ app.post('/register', asyncHandler( async (req, res) => {
 
     const userExists = await User.findOne({ username })
 
-    if (userExists) {
+    if ( userExists ) {
         res.status(400) // bad request
         throw new Error("User with that username already exists")
     }
@@ -26,6 +27,7 @@ app.post('/register', asyncHandler( async (req, res) => {
 
     // password is hashed pre-save. 
     // check userModel.js for more details
+
     const newUser = await User.create({ username, password })
 
     if (newUser) {
@@ -36,6 +38,44 @@ app.post('/register', asyncHandler( async (req, res) => {
         })
     }
 
+
+    
+}))
+
+app.post('/anime', asyncHandler( async (req, res) => {
+    const data = req.body
+
+    const list = await List.findOne({ user: req.body.user_id })
+
+    if ( !list ){
+        const newList = await List.create({
+            user: req.body.user_id
+        })
+
+        const addedAnime = await newList.anime.push(data)
+
+        if (addedAnime) {
+            res.status(201)
+            res.json(addedAnime)
+        }
+
+        else {
+            res.json({
+                "Error": "Error",
+                "message": "Could not be created"
+            })
+        }
+    }
+    
+
+    const addedAnime = await list.anime.push(data)
+
+    const savedList = await list.save()
+
+    if (savedList) {
+        res.status(200)
+        res.json(addedAnime)
+    }
 }))
 
 app.listen(5000, 'localhost', () => {
