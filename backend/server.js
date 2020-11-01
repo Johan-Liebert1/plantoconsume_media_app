@@ -4,6 +4,9 @@ import listRouter from './routes/listRouter.js'
 import userRouter from './routes/userRouter.js'
 import dotenv from 'dotenv'
 import path from 'path'
+import animeRouter from './routes/animeRouter.js'
+import mangaRouter from './routes/mangaRouter.js'
+import movieRouter from './routes/movieRouter.js'
 
 dotenv.config()
 const app = express()
@@ -14,6 +17,9 @@ app.use(express.json())
 
 app.use(userRouter)
 app.use(listRouter)
+app.use(animeRouter)
+app.use(mangaRouter)
+app.use(movieRouter)
 
 // this gives the absolute path
 const __dirname = path.resolve()
