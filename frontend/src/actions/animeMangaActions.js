@@ -75,17 +75,15 @@ export const getMangaDetails = (token, mangaId) => async (dispatch) => {
         const mangaDetails = {
             mal_id: data.mal_id,
             url: data.url,
-            publishing: man.publishing,
-            volumes: man.volumes, 
-            chapters: man.chapters,
+            publishing: data.publishing,
+            volumes: data.volumes, 
+            chapters: data.chapters,
             genres: data.genres,
             published: data.published,
-            image_url: man.image_url,
-            title: man.title,
-            url: man.url,
-            score: man.score,
-            rating: man.rating,
-            mal_id: man.mal_id
+            image_url: data.image_url,
+            title: data.title,
+            score: data.score,
+            rating: data.rating,
         }
 
         await axios.post(`/manga`, mangaDetails, config)
@@ -177,7 +175,7 @@ export const getMangaListFromBackend = (token) => async (dispatch) => {
 }
 
 
-export const deleteAnimeDetails = (token, animeId) => (dispatch) => {
+export const deleteAnimeDetails = (token, animeId) => async (dispatch) => {
     dispatch({
         type: 'ANIME_DETAILS_DELETE',
         payload: animeId
@@ -185,7 +183,7 @@ export const deleteAnimeDetails = (token, animeId) => (dispatch) => {
 
     const config = {
         headers: {
-            authorization: `BEARER ${token}`
+            authorization: `Bearer ${token}`
         }
     }
 
@@ -194,7 +192,7 @@ export const deleteAnimeDetails = (token, animeId) => (dispatch) => {
 }
 
 
-export const deleteMangaDetails = (mangaId) => (dispatch) => {
+export const deleteMangaDetails = (token, mangaId) => async (dispatch) => {
     
     dispatch({
         type: 'MANGA_DETAILS_DELETE',
@@ -203,10 +201,10 @@ export const deleteMangaDetails = (mangaId) => (dispatch) => {
 
     const config = {
         headers: {
-            authorization: `BEARER ${token}`
+            authorization: `Bearer ${token}`
         }
     }
 
-    await axios.delete(`/anime/${mangaId}`, config)
+    await axios.delete(`/manga/${mangaId}`, config)
 
 }

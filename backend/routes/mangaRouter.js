@@ -13,8 +13,10 @@ mangaRouter.get('/manga', protect, asyncHandler( async (req, res) => {
         res.json("No list found")
     }
 
-    res.status(200)
-    res.json(list.manga)
+    else {
+        res.status(200)
+        res.json(list.manga)
+    }
 
 }))
 

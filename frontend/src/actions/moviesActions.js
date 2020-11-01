@@ -20,7 +20,7 @@ export const getMovieDetails = (token, apiKey, imdbId) => async (dispatch) => {
             }
         }
 
-        const resp = await axios.post('/movie', data, config)
+        await axios.post('/movies', data, config)
 
     }
 
@@ -66,7 +66,7 @@ export const getMoivesDetailsFromBackend = (token) => (dispatch) => {
 }
 
 
-export const deleteMovieDetails = (token, movieId) => (dispatch) => {
+export const deleteMovieDetails = (token, movieId) => async (dispatch) => {
     dispatch({
         type: 'MOVIE_DETAILS_DELETE',
         payload: movieId
@@ -74,7 +74,7 @@ export const deleteMovieDetails = (token, movieId) => (dispatch) => {
 
     const config = {
         headers: {
-            authorization: `BEARER ${token}`
+            authorization: `Bearer ${token}`
         }
     }
 
