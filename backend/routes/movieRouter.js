@@ -60,6 +60,7 @@ movieRouter.post('/movies', protect, asyncHandler( async (req, res) => {
     }
 }))
 
+
 movieRouter.delete('/movies/:imdbID', protect, asyncHandler(async (req, res) => {
     const list = await List.findOne({ user: req.user._id })
 

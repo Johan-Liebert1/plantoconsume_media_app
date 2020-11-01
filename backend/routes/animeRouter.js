@@ -79,7 +79,8 @@ animeRouter.delete('/anime/:mal_id', protect, asyncHandler(async (req, res) => {
             "$pull" : { "anime" : { "mal_id": Number(req.params.mal_id) } }
             },
         )
-
+        
+        res.status(200)
         res.json({ "message": "Deleted" })
 
     }

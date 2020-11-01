@@ -1,5 +1,5 @@
 import React from 'react'
-import {useDispatch} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { deleteMovieDetails } from '../actions/moviesActions'
 
 
@@ -19,9 +19,11 @@ const MovieComponent = ( { arr } ) => {
 
     const dispatch = useDispatch()
     
+    const { userInfo } = useSelector(state => state.userLogin)
+
     const deleteHandler = (e) => {
         e.preventDefault()
-        dispatch( deleteMovieDetails(movieId) )
+        dispatch( deleteMovieDetails(userInfo.token, movieId) )
     } 
 
     return (

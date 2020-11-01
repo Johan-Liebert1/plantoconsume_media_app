@@ -66,9 +66,18 @@ export const getMoivesDetailsFromBackend = (token) => (dispatch) => {
 }
 
 
-export const deleteMovieDetails = (movieId) => (dispatch) => {
+export const deleteMovieDetails = (token, movieId) => (dispatch) => {
     dispatch({
         type: 'MOVIE_DETAILS_DELETE',
         payload: movieId
     })
+
+    const config = {
+        headers: {
+            authorization: `BEARER ${token}`
+        }
+    }
+
+    await axios.delete(`/movies/${movieId}`, config)
+
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { deleteAnimeDetails, deleteMangaDetails } from '../actions/animeMangaActions'
 
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 import '../styles/MediaDetails.css'
 // { airing, duration, episodes, genres, airDate, image, title }
@@ -39,15 +39,17 @@ const AnimeMangaComponent = ( { arr, what } ) => {
 
     const dispatch = useDispatch()
 
+    const { userInfo } = useSelector(state => state.userLogin)
+
     const deleteHandler = () => {
         // dispatch delete action depending upon 'what' prop
 
         if ( what === 'anime' ) {
-            dispatch(deleteAnimeDetails(mal_id))
+            dispatch(deleteAnimeDetails(userInfo.token, mal_id))
         }
 
         else {
-            dispatch(deleteMangaDetails(mal_id))
+            dispatch(deleteMangaDetails(userInfo.token, mal_id))
         }
     }
 

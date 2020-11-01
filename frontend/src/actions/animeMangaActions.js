@@ -20,7 +20,23 @@ export const getAnimeDetails = (token, animeId) => async (dispatch) => {
             }
         }
 
-        const resp = await axios.post(`/anime`, data, config)
+        const animeDetails = {
+            airing: data.airing,
+            duration: data.duration,
+            episodes: data.episodes,
+            genres: data.genres,
+            aired: data.aired,
+            image_url: data.image_url,
+            title: data.title,
+            type: data.type,
+            url: data.url,
+            score: data.score,
+            rating: data.rating,
+            source: data.source,
+            mal_id: data.mal_id
+        }
+
+        await axios.post(`/anime`, animeDetails, config)
 
     }
 
@@ -37,6 +53,7 @@ export const getAnimeDetails = (token, animeId) => async (dispatch) => {
 
 
 export const getMangaDetails = (token, mangaId) => async (dispatch) => {
+
     try {
         dispatch({ type: 'MANGA_DETAILS_REQUEST' })
 
@@ -55,7 +72,23 @@ export const getMangaDetails = (token, mangaId) => async (dispatch) => {
             }
         }
 
-        const resp = await axios.post(`/manga`, data, config)
+        const mangaDetails = {
+            mal_id: data.mal_id,
+            url: data.url,
+            publishing: man.publishing,
+            volumes: man.volumes, 
+            chapters: man.chapters,
+            genres: data.genres,
+            published: data.published,
+            image_url: man.image_url,
+            title: man.title,
+            url: man.url,
+            score: man.score,
+            rating: man.rating,
+            mal_id: man.mal_id
+        }
+
+        await axios.post(`/manga`, mangaDetails, config)
 
     }
 
@@ -144,11 +177,20 @@ export const getMangaListFromBackend = (token) => async (dispatch) => {
 }
 
 
-export const deleteAnimeDetails = (animeId) => (dispatch) => {
+export const deleteAnimeDetails = (token, animeId) => (dispatch) => {
     dispatch({
         type: 'ANIME_DETAILS_DELETE',
         payload: animeId
     })
+
+    const config = {
+        headers: {
+            authorization: `BEARER ${token}`
+        }
+    }
+
+    await axios.delete(`/anime/${animeId}`, config)
+
 }
 
 
@@ -158,4 +200,13 @@ export const deleteMangaDetails = (mangaId) => (dispatch) => {
         type: 'MANGA_DETAILS_DELETE',
         payload: mangaId
     })
+
+    const config = {
+        headers: {
+            authorization: `BEARER ${token}`
+        }
+    }
+
+    await axios.delete(`/anime/${mangaId}`, config)
+
 }

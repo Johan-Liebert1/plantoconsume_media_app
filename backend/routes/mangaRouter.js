@@ -10,7 +10,7 @@ mangaRouter.get('/manga', protect, asyncHandler( async (req, res) => {
 
     if (!list) {
         res.status(404)
-        res.json("no list found")
+        res.json("No list found")
     }
 
     res.status(200)
@@ -75,7 +75,8 @@ mangaRouter.delete('/manga/:mal_id', protect, asyncHandler(async (req, res) => {
             "$pull" : { "manga" : { "mal_id": Number(req.params.mal_id) } }
             },
         )
-
+        
+        res.status(200)
         res.json({ "message": "Deleted" })
 
     }
