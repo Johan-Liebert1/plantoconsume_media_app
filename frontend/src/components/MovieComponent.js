@@ -20,9 +20,20 @@ const MovieComponent = ( { arr } ) => {
     const dispatch = useDispatch()
     
     const { userInfo } = useSelector(state => state.userLogin)
+    let toSlice = 33
+    let maxLength = window.innerWidth > 900 ? 60 : 40
 
-    const new_title = `${title}`.length > 33 ? `${title.slice(0, 33)}...` : title
-    const align_left = `${title}`.length >= 29
+    if (window.innerWidth < 900 && window.innerWidth > 500) {
+        toSlice = 40
+    }
+
+    else if (window.innerWidth > 900) {
+        toSlice = 55
+    }
+
+
+    const new_title = `${title}`.length > maxLength ? `${title.slice(0, toSlice)}...` : title
+    const align_left = `${title}`.length >= maxLength
 
     const deleteHandler = (e) => {
         e.preventDefault()

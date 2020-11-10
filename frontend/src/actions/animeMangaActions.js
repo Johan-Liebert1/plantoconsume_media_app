@@ -114,9 +114,6 @@ export const getAnimeListFromBackend = (token) => async (dispatch) => {
         }
 
         const { data } = await axios.get('/anime', config)
-
-        console.log(data)
-
         
         dispatch({
             type: "ANIME_DETAILS_SUCCESS_BACKEND",
@@ -151,8 +148,6 @@ export const getMangaListFromBackend = (token) => async (dispatch) => {
         }
 
         const { data } = await axios.get('/manga', config)
-
-        console.log(data)
 
         dispatch({
             type: "MANGA_DETAILS_SUCCESS_BACKEND",

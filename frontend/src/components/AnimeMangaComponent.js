@@ -34,9 +34,21 @@ const AnimeMangaComponent = ( { arr, what } ) => {
 
     genreString += genres[genres.length - 1]
     
-    const toSlice = type === 'TV' ? 29 : type === 'OVA' ? 26 : type === 'Movie' ? 21 : title.length - 1
-    const new_title = `${title} ( ${type} )`.length > 33 ? `${title.slice(0, toSlice)}...` : title
-    const align_left = `${title} ( ${type} )`.length >= 29
+    let toSlice = type === 'TV' ? 29 : type === 'OVA' ? 26 : type === 'Movie' ? 21 : title.length - 1
+    let maxLength = window.innerWidth > 900 ? 60 : 40
+
+    if (window.innerWidth < 900 && window.innerWidth > 500) {
+        toSlice = type === 'TV' ? 40 : type === 'OVA' ? 36 : type === 'Movie' ? 31 : title.length - 1
+    }
+
+    else if (window.innerWidth > 900) {
+        toSlice = type === 'TV' ? 55 : type === 'OVA' ? 51 : type === 'Movie' ? 47 : title.length - 1
+    }
+
+
+
+    const new_title = `${title} ( ${type} )`.length > maxLength ? `${title.slice(0, toSlice)}...` : title
+    const align_left = `${title} ( ${type} )`.length >= maxLength
 
     const dispatch = useDispatch()
 

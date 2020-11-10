@@ -58,7 +58,7 @@ export const getMoivesDetailsFromBackend = (token) => async (dispatch) => {
             payload: data
         })
 
-        window.localStorage.setItem("movies", data)
+        window.localStorage.setItem("movies", JSON.stringify(data))
 
     }
 
