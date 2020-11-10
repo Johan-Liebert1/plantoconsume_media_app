@@ -38,7 +38,7 @@ const HomeScreen = ({ history, location }) => {
 
                 <form 
                     className = 'mt-5 mb-5' 
-                    style={{width: '40%'}}
+                    style={{width: '60%'}}
                     onSubmit = {submitHandler}
                 >
                     <div className='form-group'>

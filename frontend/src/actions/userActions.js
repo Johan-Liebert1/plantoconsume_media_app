@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getAnimeListFromBackend, getMangaListFromBackend } from './animeMangaActions'
+import { getMoivesDetailsFromBackend } from './moviesActions'
 
 export const userLogin = (username, password) => async (dispatch) => {
     try {
@@ -24,6 +25,7 @@ export const userLogin = (username, password) => async (dispatch) => {
 
         dispatch( getAnimeListFromBackend(data.token) )
         dispatch( getMangaListFromBackend(data.token) )
+        dispatch( getMoivesDetailsFromBackend(data.token) )
     }
 
     catch (error) {

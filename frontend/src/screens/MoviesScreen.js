@@ -22,7 +22,7 @@ const MoviesScreen = () => {
         dispatch(getMovieDetails(userInfo.token, apiKey, movieId))
     }
 
-    const condb = window.innerWidth > 1100 // condition big
+    const condb = window.innerWidth > 900 // condition big
     const conds = window.innerWidth > 580
 
     return (

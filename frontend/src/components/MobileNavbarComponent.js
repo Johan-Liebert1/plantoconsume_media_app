@@ -23,7 +23,12 @@ const MobileNavbarComponent = () => {
                     Movies
                 </h6>
             </Link>
-            
+
+            <div id = 'logout'>
+                <button className = 'btn btn-sm btn-outline-danger' >
+                    Logout
+                </button>
+            </div>
         </nav>
     )
 }

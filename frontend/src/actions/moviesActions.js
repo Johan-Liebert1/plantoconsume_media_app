@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const getMovieDetails = (token, apiKey, imdbId) => async (dispatch) => {
+export const getMovieDetails = (token, apiKey, imdbId) => async (dispatch, getState) => {
     try {
         dispatch({ type: 'MOVIE_DETAILS_REQUEST' })
 
@@ -22,6 +22,11 @@ export const getMovieDetails = (token, apiKey, imdbId) => async (dispatch) => {
 
         await axios.post('/movies', data, config)
 
+        window.localStorage.setItem(
+            'movies', 
+            JSON.stringify(getState().movies.movies)
+        )
+
     }
 
     catch (error) {
@@ -35,7 +40,7 @@ export const getMovieDetails = (token, apiKey, imdbId) => async (dispatch) => {
 }
 
 
-export const getMoivesDetailsFromBackend = (token) => (dispatch) => {
+export const getMoivesDetailsFromBackend = (token) => async (dispatch) => {
     try {
 
         dispatch({type: 'MOVIE_DETAILS_REQUEST_BACKEND'})
@@ -46,7 +51,7 @@ export const getMoivesDetailsFromBackend = (token) => (dispatch) => {
             }
         }
 
-        const { data } = axios.get('/movies', config)
+        const { data } = await axios.get('/movies', config)
 
         dispatch({
             type: 'MOVIE_DETAILS_SUCCESS_BACKEND',
@@ -58,6 +63,7 @@ export const getMoivesDetailsFromBackend = (token) => (dispatch) => {
     }
 
     catch (error) {
+        console.log(error)
         dispatch({
             type: 'MOVIE_DETAILS_FAIL_BACKEND',
             payload: error

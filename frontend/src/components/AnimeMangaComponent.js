@@ -33,9 +33,10 @@ const AnimeMangaComponent = ( { arr, what } ) => {
     }
 
     genreString += genres[genres.length - 1]
-
-    const new_title = title.length > 33 ? `${title.slice(0, 31)}...` : title
-    const align_left = title.length > 33
+    
+    const toSlice = type === 'TV' ? 29 : type === 'OVA' ? 26 : type === 'Movie' ? 21 : title.length - 1
+    const new_title = `${title} ( ${type} )`.length > 33 ? `${title.slice(0, toSlice)}...` : title
+    const align_left = `${title} ( ${type} )`.length >= 29
 
     const dispatch = useDispatch()
 

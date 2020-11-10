@@ -21,6 +21,9 @@ const MovieComponent = ( { arr } ) => {
     
     const { userInfo } = useSelector(state => state.userLogin)
 
+    const new_title = `${title}`.length > 33 ? `${title.slice(0, 33)}...` : title
+    const align_left = `${title}`.length >= 29
+
     const deleteHandler = (e) => {
         e.preventDefault()
         dispatch( deleteMovieDetails(userInfo.token, movieId) )
@@ -40,9 +43,12 @@ const MovieComponent = ( { arr } ) => {
             </div>
 
             <div id = 'info' >
-                <div id = 'title'>
+                <div id = 'title' style ={{
+                    display: 'flex', alignSelf: align_left ? 'flex-start' : ''
+                    }}
+                >
                     <a href = {href} target='_blank' rel="noreferrer"> 
-                        <h5 style = {{ display : 'inline' }}>{ title }</h5>
+                        <h5 style = {{ display : 'inline' }}>{ new_title }</h5>
                     </a>
                 </div>
 
@@ -53,7 +59,7 @@ const MovieComponent = ( { arr } ) => {
                         <div>
                             <div className='attr'>
                                 <strong>
-                                    Duration
+                                    Duration:
                                 </strong>
                             </div>
                             <div className='value'>{ duration }</div>
@@ -62,7 +68,7 @@ const MovieComponent = ( { arr } ) => {
                         <div>
                             <div className='attr'>
                                 <strong>
-                                    IMDBRating
+                                    Rating:
                                 </strong>
                             </div>
                             <div className='value'>{ score }</div>
@@ -93,7 +99,7 @@ const MovieComponent = ( { arr } ) => {
                         <div>
                             <div className='attr'>
                                 <strong>
-                                    MetaScore
+                                    MetaScore:
                                 </strong>
                             </div>
                             <div className='value'> { metascore } </div>
