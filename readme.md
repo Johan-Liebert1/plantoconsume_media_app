@@ -2,7 +2,7 @@
 
 A simple application that uses APIs to gather information about Anime, Manga, Movies or TV Shows that one plans to watch, and generate a list of the same. 
 
-| [Hosted on Heorku](https://ptwlist.herokuapp.com/)
+> [Hosted on Heorku](https://ptwlist.herokuapp.com/)
 
 ## APIs used
 1. [Jikan API](https://jikan.moe/) for Anime/Manga details
