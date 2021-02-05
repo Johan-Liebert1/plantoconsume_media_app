@@ -1,89 +1,79 @@
-import axios from 'axios'
+import axios from "axios";
 
 export const getMovieDetails = (token, apiKey, imdbId) => async (dispatch, getState) => {
-    try {
-        dispatch({ type: 'MOVIE_DETAILS_REQUEST' })
+	try {
+		dispatch({ type: "MOVIE_DETAILS_REQUEST" });
 
-        apiKey = apiKey === '' ? process.env.REACT_APP_OPENDB_API_KEY : apiKey 
+		apiKey = apiKey === "" ? process.env.REACT_APP_OPENDB_API_KEY : apiKey;
 
-        const { data } = await axios.get(`http://www.omdbapi.com/?apikey=${apiKey}&i=${imdbId}`)
+		const { data } = await axios.get(
+			`http://www.omdbapi.com/?apikey=${apiKey}&i=${imdbId}`
+		);
 
-        dispatch({
-            type: "MOVIE_DETAILS_SUCCESS",
-            payload: data
-        })
+		dispatch({
+			type: "MOVIE_DETAILS_SUCCESS",
+			payload: data
+		});
 
-        const config = {
-            headers : {
-                'Content-Type' : 'application/json',
-                authorization: `Bearer ${token}`
-            }
-        }
+		const config = {
+			headers: {
+				"Content-Type": "application/json",
+				authorization: `Bearer ${token}`
+			}
+		};
 
-        await axios.post('/movies', data, config)
+		await axios.post("/movies", data, config);
 
-        window.localStorage.setItem(
-            'movies', 
-            JSON.stringify(getState().movies.movies)
-        )
+		localStorage.setItem("movies", JSON.stringify(getState().movies.movies));
+	} catch (error) {
+		dispatch({
+			type: "ANIME_DETAILS_FAIL",
+			payload:
+				error.response && error.response.data.message
+					? error.response.data.message
+					: error.message
+		});
+	}
+};
 
-    }
+export const getMoivesDetailsFromBackend = token => async dispatch => {
+	try {
+		dispatch({ type: "MOVIE_DETAILS_REQUEST_BACKEND" });
 
-    catch (error) {
+		const config = {
+			headers: {
+				authorization: `Bearer ${token}`
+			}
+		};
 
-        dispatch({ 
-            type: 'ANIME_DETAILS_FAIL', 
-            payload : error.response && error.response.data.message ? error.response.data.message : error.message
-        })
+		const { data } = await axios.get("/movies", config);
 
-    }
-}
+		dispatch({
+			type: "MOVIE_DETAILS_SUCCESS_BACKEND",
+			payload: data
+		});
 
+		localStorage.setItem("movies", JSON.stringify(data));
+	} catch (error) {
+		console.log(error);
+		dispatch({
+			type: "MOVIE_DETAILS_FAIL_BACKEND",
+			payload: error
+		});
+	}
+};
 
-export const getMoivesDetailsFromBackend = (token) => async (dispatch) => {
-    try {
+export const deleteMovieDetails = (token, movieId) => async dispatch => {
+	dispatch({
+		type: "MOVIE_DETAILS_DELETE",
+		payload: movieId
+	});
 
-        dispatch({type: 'MOVIE_DETAILS_REQUEST_BACKEND'})
+	const config = {
+		headers: {
+			authorization: `Bearer ${token}`
+		}
+	};
 
-        const config = {
-            headers: {
-                authorization: `Bearer ${token}`
-            }
-        }
-
-        const { data } = await axios.get('/movies', config)
-
-        dispatch({
-            type: 'MOVIE_DETAILS_SUCCESS_BACKEND',
-            payload: data
-        })
-
-        window.localStorage.setItem("movies", JSON.stringify(data))
-
-    }
-
-    catch (error) {
-        console.log(error)
-        dispatch({
-            type: 'MOVIE_DETAILS_FAIL_BACKEND',
-            payload: error
-        })
-    }
-}
-
-
-export const deleteMovieDetails = (token, movieId) => async (dispatch) => {
-    dispatch({
-        type: 'MOVIE_DETAILS_DELETE',
-        payload: movieId
-    })
-
-    const config = {
-        headers: {
-            authorization: `Bearer ${token}`
-        }
-    }
-
-    await axios.delete(`/movies/${movieId}`, config)
-
-}
+	await axios.delete(`/movies/${movieId}`, config);
+};
