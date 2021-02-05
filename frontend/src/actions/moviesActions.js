@@ -23,8 +23,6 @@ export const getMovieDetails = (token, apiKey, imdbId) => async (dispatch, getSt
 		};
 
 		await axios.post("/movies", data, config);
-
-		localStorage.setItem("movies", JSON.stringify(getState().movies.movies));
 	} catch (error) {
 		dispatch({
 			type: "ANIME_DETAILS_FAIL",
@@ -52,8 +50,6 @@ export const getMoivesDetailsFromBackend = token => async dispatch => {
 			type: "MOVIE_DETAILS_SUCCESS_BACKEND",
 			payload: data
 		});
-
-		localStorage.setItem("movies", JSON.stringify(data));
 	} catch (error) {
 		console.log(error);
 		dispatch({

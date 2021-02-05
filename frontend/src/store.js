@@ -14,27 +14,27 @@ const reducers = combineReducers({
 	userRegister: userRegisterReducer
 });
 
-const animeFromLocalStorage = window.localStorage.getItem("anime")
-	? JSON.parse(window.localStorage.getItem("anime"))
-	: [];
+const animeFromLocalStorage = localStorage.getItem("anime")
+	? JSON.parse(localStorage.getItem("anime"))
+	: {};
 
-const mangaFromLocalStorage = window.localStorage.getItem("manga")
-	? JSON.parse(window.localStorage.getItem("manga"))
-	: [];
+const mangaFromLocalStorage = localStorage.getItem("manga")
+	? JSON.parse(localStorage.getItem("manga"))
+	: {};
 
-const moviesFromLocalStorage = window.localStorage.getItem("movies")
-	? JSON.parse(window.localStorage.getItem("movies"))
-	: [];
+const moviesFromLocalStorage = localStorage.getItem("movies")
+	? JSON.parse(localStorage.getItem("movies"))
+	: {};
 
-const userInfoFromLocalStorage = window.localStorage.getItem("userInfo")
-	? JSON.parse(window.localStorage.getItem("userInfo"))
+const userInfoFromLocalStorage = localStorage.getItem("userLogin")
+	? JSON.parse(localStorage.getItem("userLogin"))
 	: {};
 
 const initialState = {
 	anime: animeFromLocalStorage,
 	manga: mangaFromLocalStorage,
 	movies: moviesFromLocalStorage,
-	userInfo: userInfoFromLocalStorage
+	userLogin: userInfoFromLocalStorage
 };
 
 const store = createStore(

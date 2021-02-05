@@ -19,7 +19,7 @@ export const userLogin = (username, password) => async dispatch => {
 			payload: data
 		});
 
-		localStorage.setItem("userInfo", JSON.stringify(data));
+		localStorage.setItem("userLogin", JSON.stringify({ userLogin: data }));
 
 		dispatch(getAnimeListFromBackend(data.token));
 		dispatch(getMangaListFromBackend(data.token));
@@ -67,7 +67,7 @@ export const userLogout = () => dispatch => {
 	dispatch({
 		type: "USER_LOGOUT_REQUEST"
 	});
-	localStorage.setItem("userInfo", "");
+	localStorage.setItem("userLogin", "");
 	localStorage.setItem("anime", "");
 	localStorage.setItem("manga", "");
 	localStorage.setItem("movies", "");

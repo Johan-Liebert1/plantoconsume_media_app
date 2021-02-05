@@ -1,42 +1,34 @@
 export const userLoginReducer = (state = {}, action) => {
+	switch (action.type) {
+		case "USER_LOGIN_REQUEST":
+			return { loading: true };
 
-    switch (action.type) {
-        case 'USER_LOGIN_REQUEST':
-            return { loading : true }            
-        
-        case 'USER_LOGIN_SUCCESS':
-            return { loading : false, userInfo: action.payload }
-        
-        case 'USER_LOGIN_FAIL':
-            return { loading: false, error : action.payload }
+		case "USER_LOGIN_SUCCESS":
+			return { loading: false, userLogin: action.payload };
 
-        case 'USER_LOGOUT_REQUEST':
-            window.localStorage.setItem('userInfo', '')
-            window.localStorage.setItem('anime', '')
-            window.localStorage.setItem('manga', '')
-            window.localStorage.setItem('movies', '')
-            return {}
+		case "USER_LOGIN_FAIL":
+			return { loading: false, error: action.payload };
 
-        default:
-            return state
-    }
+		case "USER_LOGOUT_REQUEST":
+			return {};
 
-}
+		default:
+			return state;
+	}
+};
 
 export const userRegisterReducer = (state = {}, action) => {
+	switch (action.type) {
+		case "USER_REGISTER_REQUEST":
+			return { loading: true };
 
-    switch (action.type) {
-        case 'USER_REGISTER_REQUEST':
-            return { loading : true }            
-        
-        case 'USER_REGISTER_SUCCESS':
-            return { loading : false, userInfo: action.payload }
-        
-        case 'USER_REGISTER_FAIL':
-            return { loading: false, error : action.payload }
+		case "USER_REGISTER_SUCCESS":
+			return { loading: false, userRegister: action.payload };
 
-        default:
-            return state
-    }
+		case "USER_REGISTER_FAIL":
+			return { loading: false, error: action.payload };
 
-}
+		default:
+			return state;
+	}
+};

@@ -1,97 +1,75 @@
-export const animeReducer = (state = { anime: [] }, action) => {
+export const animeReducer = (state = {}, action) => {
+	switch (action.type) {
+		case "ANIME_DETAILS_REQUEST":
+			return { loading: true };
 
-    switch ( action.type ) {
+		case "ANIME_DETAILS_SUCCESS":
+			const a1 = { loading: false, anime: [...state.anime, action.payload] };
+			localStorage.setItem("anime", JSON.stringify(a1));
+			return a1;
 
-        case 'ANIME_DETAILS_REQUEST':
-            return { loading: true, ...state }
+		case "ANIME_DETAILS_FAIL":
+			return { loading: false };
 
-        case 'ANIME_DETAILS_SUCCESS':
-            window.localStorage.setItem(
-                'anime', 
-                JSON.stringify([...state.anime, action.payload])
-            )
+		// make requests to the backend server
+		// action.payload is a list of objects
 
-            return { loading: false, anime: [...state.anime, action.payload] }
+		case "ANIME_DETAILS_REQUEST_BACKEND":
+			return { loading: true };
 
-        case 'ANIME_DETAILS_FAIL':
-            return { loading: false, ...state }
-        
-        // make requests to the backend server
-        // action.payload is a list of objects
+		case "ANIME_DETAILS_SUCCESS_BACKEND":
+			const a2 = { loading: false, anime: [...action.payload] };
+			localStorage.setItem("anime", JSON.stringify(a2));
+			return a2;
 
-        case 'ANIME_DETAILS_REQUEST_BACKEND':
-            return { loading: true, ...state }
+		case "ANIME_DETAILS_FAIL_BACKEND":
+			return { loading: false };
 
-        case 'ANIME_DETAILS_SUCCESS_BACKEND':
-            window.localStorage.setItem(
-                'anime', 
-                JSON.stringify([...action.payload])
-            )
+		case "ANIME_DETAILS_DELETE":
+			let anime = state.anime.filter(an => an.mal_id !== action.payload);
 
-            return { loading: false, anime: [...action.payload] }
+			localStorage.setItem("anime", JSON.stringify({ loading: false, anime }));
 
-        case 'ANIME_DETAILS_FAIL_BACKEND':
-            return { loading: false, ...state }
+			return { loading: false, anime };
 
+		default:
+			return state;
+	}
+};
 
-        case 'ANIME_DETAILS_DELETE':
-            let anime = state.anime.filter(an => an.mal_id !== action.payload)
+export const mangaReducer = (state = {}, action) => {
+	switch (action.type) {
+		case "MANGA_DETAILS_REQUEST":
+			return { loading: true };
 
-            window.localStorage.setItem(
-                'anime', 
-                JSON.stringify(anime)
-            )
+		case "MANGA_DETAILS_SUCCESS":
+			const m3 = { loading: false, manga: [...state.manga, action.payload] };
+			localStorage.setItem("manga", JSON.stringify(m3));
 
-            return { loading: false, anime }
+			return m3;
 
-        default:
-            return state
-    }
-}
+		case "MANGA_DETAILS_FAIL":
+			return { loading: false };
 
+		case "MANGA_DETAILS_REQUEST_BACKEND":
+			return { loading: true };
 
-export const mangaReducer = (state = { manga: [] }, action) => {
+		case "MANGA_DETAILS_SUCCESS_BACKEND":
+			const m4 = { loading: false, manga: [...action.payload] };
+			localStorage.setItem("manga", JSON.stringify(m4));
+			return m4;
 
-    switch ( action.type ) {
+		case "MANGA_DETAILS_FAIL_BACKEND":
+			return { loading: false };
 
-        case 'MANGA_DETAILS_REQUEST':
-            return { loading: true, ...state }
+		case "MANGA_DETAILS_DELETE":
+			let manga = state.manga.filter(man => man.mal_id !== action.payload);
 
-        case 'MANGA_DETAILS_SUCCESS':
-            window.localStorage.setItem(
-                'manga', 
-                JSON.stringify([...state.manga, action.payload])
-            )
-            
-            return { loading: false, manga: [...state.manga, action.payload] }
+			localStorage.setItem("manga", JSON.stringify({ loading: false, manga }));
 
-        case 'MANGA_DETAILS_FAIL':
-            return { loading: false, ...state }
+			return { loading: false, manga };
 
-
-
-        case 'MANGA_DETAILS_REQUEST_BACKEND':
-            return { loading: true, ...state }
-
-        case 'MANGA_DETAILS_SUCCESS_BACKEND':
-            return { loading: false, manga: [...action.payload] }
-
-        case 'MANGA_DETAILS_FAIL_BACKEND':
-            return { loading: false, ...state }
-
-
-
-        case 'MANGA_DETAILS_DELETE':
-            let manga = state.manga.filter(man => man.mal_id !== action.payload)
-
-            window.localStorage.setItem(
-                'manga',
-                JSON.stringify(manga)
-            )
-
-            return { loading: false, manga }
-
-        default:
-            return state
-    }
-}
+		default:
+			return state;
+	}
+};

@@ -108,8 +108,6 @@ export const getAnimeListFromBackend = token => async dispatch => {
 			type: "ANIME_DETAILS_SUCCESS_BACKEND",
 			payload: data
 		});
-
-		localStorage.setItem("anime", JSON.stringify(data));
 	} catch (error) {
 		dispatch({
 			type: "ANIME_DETAILS_FAIL_BACKEND",
@@ -135,8 +133,6 @@ export const getMangaListFromBackend = token => async dispatch => {
 			type: "MANGA_DETAILS_SUCCESS_BACKEND",
 			payload: data
 		});
-
-		localStorage.setItem("manga", JSON.stringify(data));
 	} catch (error) {
 		dispatch({
 			type: "MANGA_DETAILS_FAIL_BACKEND",
