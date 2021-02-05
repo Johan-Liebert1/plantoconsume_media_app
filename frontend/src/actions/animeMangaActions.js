@@ -37,6 +37,8 @@ export const getAnimeDetails = (token, animeId) => async dispatch => {
 
 		await axios.post(`/anime`, animeDetails, config);
 	} catch (error) {
+		console.log(error);
+		console.log(error.response);
 		dispatch({
 			type: "ANIME_DETAILS_FAIL",
 			payload:

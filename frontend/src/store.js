@@ -16,15 +16,15 @@ const reducers = combineReducers({
 
 const animeFromLocalStorage = localStorage.getItem("anime")
 	? JSON.parse(localStorage.getItem("anime"))
-	: {};
+	: { anime: [] };
 
 const mangaFromLocalStorage = localStorage.getItem("manga")
 	? JSON.parse(localStorage.getItem("manga"))
-	: {};
+	: { manga: [] };
 
 const moviesFromLocalStorage = localStorage.getItem("movies")
 	? JSON.parse(localStorage.getItem("movies"))
-	: {};
+	: { movies: [] };
 
 const userInfoFromLocalStorage = localStorage.getItem("userLogin")
 	? JSON.parse(localStorage.getItem("userLogin"))

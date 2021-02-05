@@ -20,6 +20,8 @@ const AnimeScreen = () => {
 
 		const animeExists = anime.find(a => a.mal_id === Number(animeId));
 
+		console.log(userInfo.token);
+
 		if (!animeExists) dispatch(getAnimeDetails(userInfo.token, animeId));
 	};
 

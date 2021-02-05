@@ -1,7 +1,8 @@
 export const animeReducer = (state = {}, action) => {
+	console.log(state);
 	switch (action.type) {
 		case "ANIME_DETAILS_REQUEST":
-			return { loading: true };
+			return { loading: true, anime: state.anime };
 
 		case "ANIME_DETAILS_SUCCESS":
 			const a1 = { loading: false, anime: [...state.anime, action.payload] };
@@ -9,13 +10,13 @@ export const animeReducer = (state = {}, action) => {
 			return a1;
 
 		case "ANIME_DETAILS_FAIL":
-			return { loading: false };
+			return { loading: false, anime: state.anime };
 
 		// make requests to the backend server
 		// action.payload is a list of objects
 
 		case "ANIME_DETAILS_REQUEST_BACKEND":
-			return { loading: true };
+			return { loading: true, anime: state.anime };
 
 		case "ANIME_DETAILS_SUCCESS_BACKEND":
 			const a2 = { loading: false, anime: [...action.payload] };
@@ -23,7 +24,7 @@ export const animeReducer = (state = {}, action) => {
 			return a2;
 
 		case "ANIME_DETAILS_FAIL_BACKEND":
-			return { loading: false };
+			return { loading: false, anime: state.anime };
 
 		case "ANIME_DETAILS_DELETE":
 			let anime = state.anime.filter(an => an.mal_id !== action.payload);
@@ -40,7 +41,7 @@ export const animeReducer = (state = {}, action) => {
 export const mangaReducer = (state = {}, action) => {
 	switch (action.type) {
 		case "MANGA_DETAILS_REQUEST":
-			return { loading: true };
+			return { loading: true, manga: state.manga };
 
 		case "MANGA_DETAILS_SUCCESS":
 			const m3 = { loading: false, manga: [...state.manga, action.payload] };
@@ -49,10 +50,10 @@ export const mangaReducer = (state = {}, action) => {
 			return m3;
 
 		case "MANGA_DETAILS_FAIL":
-			return { loading: false };
+			return { loading: false, manga: state.manga };
 
 		case "MANGA_DETAILS_REQUEST_BACKEND":
-			return { loading: true };
+			return { loading: true, manga: state.manga };
 
 		case "MANGA_DETAILS_SUCCESS_BACKEND":
 			const m4 = { loading: false, manga: [...action.payload] };
@@ -60,7 +61,7 @@ export const mangaReducer = (state = {}, action) => {
 			return m4;
 
 		case "MANGA_DETAILS_FAIL_BACKEND":
-			return { loading: false };
+			return { loading: false, manga: state.manga };
 
 		case "MANGA_DETAILS_DELETE":
 			let manga = state.manga.filter(man => man.mal_id !== action.payload);
